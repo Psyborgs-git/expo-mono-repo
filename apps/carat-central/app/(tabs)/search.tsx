@@ -26,7 +26,7 @@ import {
   Bell,
   BarChart3,
 } from '@tamagui/lucide-icons';
-import { SearchBar } from '../../components/molecules/SearchBar';
+import { SearchBar } from '@bdt/components';
 import { Select } from '../../components/ui/Select';
 import { MultiSelect } from '../../components/ui/MultiSelect';
 import { CaratInput } from '../../components/ui/CaratInput';

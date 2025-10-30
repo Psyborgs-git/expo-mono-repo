@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import { FlatList } from 'react-native';
 import { YStack } from 'tamagui';
-import { MessageBubble } from '../molecules/MessageBubble';
+import { MessageBubble } from '@bdt/components';
 
 export interface ChatMessage {
   id: string;

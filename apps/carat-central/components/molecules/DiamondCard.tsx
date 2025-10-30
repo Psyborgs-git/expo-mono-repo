@@ -1,7 +1,7 @@
 import React from 'react';
 import { YStack, XStack, Text } from 'tamagui';
-import { Card } from '../atoms/Card';
-import { Badge } from '../atoms/Badge';
+import { Card } from '@bdt/components';
+import { Badge } from '@bdt/components';
 
 export interface DiamondCardProps {
   id: string;

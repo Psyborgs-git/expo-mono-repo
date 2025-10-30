@@ -1,5 +1,5 @@
 import React from 'react';
-import { Input } from '../atoms/Input';
+import { Input } from '@bdt/components';
 
 export const TextInput = (props: any) => <Input {...props} />;
 

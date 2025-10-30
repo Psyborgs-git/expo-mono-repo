@@ -1,8 +1,8 @@
 import React from 'react';
 import { ScrollView } from 'react-native';
 import { YStack, XStack, Text, Separator } from 'tamagui';
-import { FormField } from '../molecules/FormField';
-import { Button } from '../atoms/Button';
+import { FormField } from '@bdt/components';
+import { Button } from '@bdt/components';
 
 export interface FilterField {
   key: string;
