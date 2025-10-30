@@ -1,0 +1,621 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+enum BillingCycle {
+  ANNUAL
+  MONTHLY
+}
+
+type CaratAuthPayload {
+  accessToken: String!
+  refreshToken: String!
+  users: CaratUserInfo!
+}
+
+type CaratLogoutResponse {
+  message: String!
+}
+
+type CaratOTPResponse {
+  message: String!
+  otpId: String!
+}
+
+type CaratRefreshTokenResponse {
+  accessToken: String!
+  refreshToken: String!
+}
+
+type CaratUserInfo {
+  countryCode: String
+  email: String
+  id: String!
+  mobile: String
+}
+
+type CaratUserType {
+  companyName: String
+  countryCode: String
+  email: String
+  id: String!
+  isActive: Boolean!
+  mobile: String
+  name: String
+}
+
+type Chat {
+  createdAt: DateTime!
+  description: String
+  id: ID!
+  isGroup: Boolean!
+  messages: [Message!]!
+  name: String
+  participants: [ChatParticipant!]!
+  updatedAt: DateTime!
+}
+
+type ChatParticipant {
+  chatId: String!
+  id: ID!
+  joinedAt: DateTime!
+  lastReadAt: DateTime
+  userId: String!
+}
+
+enum ClarityGrade {
+  FL
+  I1
+  IF
+  SI1
+  SI2
+  VS1
+  VS2
+  VVS1
+  VVS2
+}
+
+enum ColorGrade {
+  D
+  E
+  F
+  G
+  H
+  I
+  J
+  K
+}
+
+input CreateDiamondInput {
+  carat: Float!
+  certificate: String
+  certificateNumber: String
+  clarity: ClarityGrade!
+  color: ColorGrade!
+  cut: CutGrade!
+  isPublic: Boolean = false
+  name: String
+  pricePerCarat: Float!
+  shape: DiamondShape!
+  stockNumber: String!
+  totalPrice: Float!
+}
+
+input CreateOrganizationInput {
+  description: String
+  domain: String
+  name: String!
+}
+
+input CreateRequestInput {
+  certificates: [String!]
+  clarityGrades: [String!]
+  colorGrades: [String!]
+  currency: String
+  cutGrades: [String!]
+  description: String
+  expiresAt: DateTime
+  isPublic: Boolean! = false
+  maxBudget: Float
+  maxCarat: Float
+  minBudget: Float
+  minCarat: Float
+  shapes: [String!]
+  tags: [String!]
+  title: String!
+}
+
+enum CutGrade {
+  EXCELLENT
+  FAIR
+  GOOD
+  IDEAL
+  POOR
+  VERY_GOOD
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type DeleteResult {
+  message: String!
+  success: Boolean!
+}
+
+type Diamond {
+  carat: Float!
+  certificate: String
+  certificateNumber: String
+  clarity: ClarityGrade!
+  color: ColorGrade!
+  createdAt: DateTime!
+  cut: CutGrade!
+  id: String!
+  isPublic: Boolean!
+  name: String
+  organizationId: String!
+  ownerId: String!
+  pricePerCarat: Float!
+  shape: DiamondShape!
+  status: DiamondStatus!
+  stockNumber: String
+  totalPrice: Float!
+  updatedAt: DateTime!
+}
+
+type DiamondConnection {
+  """List of edges containing nodes and cursors"""
+  edges: [DiamondEdge!]!
+
+  """Pagination information"""
+  pageInfo: PageInfo!
+
+  """Total count of items available"""
+  totalCount: Int!
+}
+
+type DiamondEdge {
+  """Cursor for this specific item"""
+  cursor: String!
+
+  """The actual diamond"""
+  node: Diamond!
+}
+
+type DiamondRequest {
+  certificates: [String!]!
+  clarityGrades: [String!]!
+  closedAt: DateTime
+  colorGrades: [String!]!
+  createdAt: DateTime!
+  currency: String!
+  cutGrades: [String!]!
+  description: String
+  expiresAt: DateTime
+  id: ID!
+  isPublic: Boolean!
+  maxBudget: Float
+  maxCarat: Float
+  minBudget: Float
+  minCarat: Float
+  requestNumber: String!
+  requester: UserBasicInfo!
+  requesterId: String!
+  requesterOrg: OrgBasicInfo
+  requesterOrgId: String
+  responseCount: Float!
+  responses: [RequestResponse!]!
+  shapes: [String!]!
+  status: RequestStatus!
+  tags: [String!]!
+  title: String!
+  updatedAt: DateTime!
+}
+
+type DiamondSearchResult {
+  carat: Float!
+  clarity: String!
+  color: String!
+  cut: String!
+  id: ID!
+  name: String!
+  pricePerCarat: Float!
+  shape: String!
+  similarity: Float
+  stockNumber: String!
+  totalPrice: Float!
+}
+
+enum DiamondShape {
+  CUSHION
+  EMERALD
+  OVAL
+  PRINCESS
+  ROUND
+}
+
+enum DiamondStatus {
+  AVAILABLE
+  RESERVED
+  SOLD
+}
+
+"""
+The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSON
+
+type Message {
+  chatId: String!
+  content: String
+  createdAt: DateTime!
+  id: ID!
+  isRead: Boolean!
+  readAt: DateTime
+  s3Key: String
+  senderId: String!
+}
+
+type Mutation {
+  acceptResponse(responseId: String!): RequestResponse!
+  addChatParticipant(chatId: String!, userId: String!): Chat!
+  assignRole(organizationId: String!, roleId: String!, userId: String!): User!
+  cancelOrder(orderId: String!): Order!
+  cancelSubscription: SubscriptionType!
+  caratLogout: CaratLogoutResponse!
+  caratLogoutAll: CaratLogoutResponse!
+  caratOAuth2Login(accessToken: String!, email: String!, provider: String!, providerId: String!, refreshToken: String): CaratAuthPayload!
+  caratRefreshToken(refreshToken: String!): CaratRefreshTokenResponse!
+  caratRequestEmailOTP(email: String!): CaratOTPResponse!
+  caratRequestMobileOTP(countryCode: String! = "1", mobile: String!): CaratOTPResponse!
+  caratRequestWhatsAppOTP(countryCode: String! = "1", mobile: String!): CaratOTPResponse!
+  caratVerifyEmailOTP(email: String!, otp: String!): CaratAuthPayload!
+  caratVerifyMobileOTP(countryCode: String! = "1", mobile: String!, otp: String!): CaratAuthPayload!
+  caratVerifyWhatsAppOTP(countryCode: String! = "1", mobile: String!, otp: String!): CaratAuthPayload!
+  createChat(isGroup: Boolean, name: String, participantIds: [String!]!): Chat!
+  createDiamond(input: CreateDiamondInput!): Diamond!
+  createOrder(buyerNotes: String, diamondIds: [String!]!, sellerOrgId: String!, shippingAddress: String): Order!
+  createOrganization(data: CreateOrganizationInput!): Organization!
+  createRequest(input: CreateRequestInput!): DiamondRequest!
+  deleteDiamond(id: String!): DeleteResult!
+  deleteMessage(messageId: String!): Message!
+  inviteUserToOrganization(organizationId: String!, roleId: String, userId: String!): User!
+  markMessageAsRead(messageId: String!): Message!
+  publishDiamond(id: String!): Diamond!
+  rejectResponse(reason: String, responseId: String!): RequestResponse!
+  removeChatParticipant(chatId: String!, userId: String!): Chat!
+  removeUserFromOrganization(organizationId: String!, userId: String!): Boolean!
+  sendMessage(chatId: String!, content: String, receiverId: String, s3Key: String): Message!
+  submitResponse(input: SubmitResponseInput!, requestId: String!): RequestResponse!
+  unpublishDiamond(id: String!): Diamond!
+  updateDiamond(id: String!, input: UpdateDiamondInput!): Diamond!
+  updateLastRead(chatId: String!): Chat!
+  updateOrderStatus(orderId: String!, sellerNotes: String, status: String!): Order!
+  updateOrganization(data: UpdateOrganizationInput!, id: String!): Organization!
+  updatePaymentStatus(orderId: String!, paymentMethod: String, paymentStatus: String!): Order!
+  updateRequest(data: String!, requestId: String!): String!
+  upgradeSubscription(billingCycle: String!, tier: String!): SubscriptionType!
+}
+
+"""An object with a globally unique ID, refetchable via the node query"""
+interface Node {
+  """
+  Globally unique identifier for refetching this object via the node query
+  """
+  id: ID!
+}
+
+type Order {
+  buyer: UserBasic!
+  buyerId: String!
+  buyerNotes: String
+  buyerOrg: OrganizationBasic
+  buyerOrgId: String
+  canceledAt: DateTime
+  completedAt: DateTime
+  createdAt: DateTime!
+  currency: String!
+  deliveredAt: DateTime
+  id: ID!
+  orderItems: [OrderItem!]!
+  orderNumber: String!
+  paymentMethod: String
+  paymentStatus: PaymentStatus!
+  seller: UserBasic!
+  sellerId: String!
+  sellerNotes: String
+  sellerOrg: OrganizationBasic!
+  sellerOrgId: String!
+  shippedAt: DateTime
+  shippingAddress: JSON
+  status: OrderStatus!
+  totalAmount: Float!
+  updatedAt: DateTime!
+}
+
+type OrderItem {
+  createdAt: DateTime!
+  diamondId: String!
+  diamondSnapshot: JSON
+  id: ID!
+  pricePerUnit: Float!
+  quantity: Float!
+  totalPrice: Float!
+}
+
+enum OrderStatus {
+  CANCELED
+  COMPLETED
+  CONFIRMED
+  DELIVERED
+  PENDING
+  PROCESSING
+  SHIPPED
+}
+
+type OrgBasicInfo {
+  id: ID!
+  name: String!
+}
+
+type Organization {
+  createdAt: DateTime!
+  createdBy: User!
+  createdById: String!
+  description: String
+  domain: String
+  id: ID!
+  isActive: Boolean!
+  name: String!
+  organizationUsers: [OrganizationMember!]!
+  updatedAt: DateTime!
+}
+
+type OrganizationBasic {
+  id: ID!
+  name: String!
+}
+
+type OrganizationMember {
+  id: ID!
+  isActive: Boolean!
+  isOwner: Boolean!
+  joinedAt: DateTime!
+  organizationId: String!
+  role: Role
+  roleId: String
+  user: User!
+  userId: String!
+}
+
+type PageInfo {
+  """Cursor pointing to the last item in the current page"""
+  endCursor: String
+
+  """Whether there are more items after the current cursor"""
+  hasNextPage: Boolean!
+
+  """Whether there are more items before the current cursor"""
+  hasPreviousPage: Boolean!
+
+  """Cursor pointing to the first item in the current page"""
+  startCursor: String
+}
+
+enum PaymentStatus {
+  FAILED
+  PAID
+  PENDING
+  REFUNDED
+}
+
+type Permission {
+  action: String!
+  createdAt: DateTime!
+  description: String
+  id: ID!
+  isActive: Boolean!
+  resource: String!
+}
+
+type Query {
+  canAddDiamond: Boolean!
+  canUseVectorSearch: Boolean!
+  caratMe: CaratUserType!
+  chat(chatId: String!): Chat
+  chatMessages(chatId: String!, cursor: String, limit: Float): [Message!]!
+  diamond(id: String!): Diamond!
+  diamonds(
+    """Cursor to paginate after"""
+    after: String
+
+    """Cursor to paginate before"""
+    before: String
+
+    """Number of items to return after cursor"""
+    first: Int
+
+    """Number of items to return before cursor"""
+    last: Int
+  ): DiamondConnection!
+  findSimilarDiamonds(diamondId: String!, limit: Float = 10): [DiamondSearchResult!]!
+  myChats: [Chat!]!
+  myOrders: [Order!]!
+  myOrgOrders: [Order!]!
+  myOrgRequests: [DiamondRequest!]!
+  myOrganizations: [Organization!]!
+  myRequests: [DiamondRequest!]!
+  mySearchHistory(limit: Float = 50): [SearchLog!]!
+  mySubscription: SubscriptionType!
+
+  """
+  Fetches an object given its globally unique ID. Returns null if the object does not exist or the user lacks permission.
+  """
+  node(
+    """The globally unique ID"""
+    id: ID!
+  ): Node
+  order(orderId: String!): Order
+  organization(id: String!): Organization
+  permissions(organizationId: String!): [Permission!]!
+  publicDiamonds(
+    """Cursor to paginate after"""
+    after: String
+
+    """Cursor to paginate before"""
+    before: String
+
+    """Number of items to return after cursor"""
+    first: Int
+
+    """Number of items to return before cursor"""
+    last: Int
+  ): DiamondConnection!
+  publicRequests: [DiamondRequest!]!
+  request(requestId: String!): DiamondRequest
+  requestResponses(requestId: String!): [RequestResponse!]!
+  roles(organizationId: String!): [Role!]!
+  searchAnalytics(days: Float = 30): SearchLog!
+  searchDiamonds(filters: String!): [DiamondSearchResult!]!
+  searchProfiles(query: String!): [DiamondSearchResult!]!
+}
+
+type RequestResponse {
+  acceptedAt: DateTime
+  createdAt: DateTime!
+  currency: String!
+  id: ID!
+  message: String!
+  proposedDiamonds: [String!]!
+  proposedPrice: Float
+  rejectedAt: DateTime
+  requestId: String!
+  responder: UserBasicInfo!
+  responderId: String!
+  responderOrg: OrgBasicInfo!
+  responderOrgId: String!
+  status: ResponseStatus!
+}
+
+enum RequestStatus {
+  CLOSED
+  EXPIRED
+  FULFILLED
+  IN_PROGRESS
+  OPEN
+}
+
+enum ResponseStatus {
+  ACCEPTED
+  PENDING
+  REJECTED
+  WITHDRAWN
+}
+
+type Role {
+  createdAt: DateTime!
+  description: String
+  id: ID!
+  isActive: Boolean!
+  isAdminRole: Boolean!
+  name: String!
+  updatedAt: DateTime!
+}
+
+type SearchLog {
+  createdAt: DateTime!
+  executionTimeMs: Float
+  filters: JSON
+  id: ID!
+  ipAddress: String
+  organizationId: String
+  query: String
+  resultsCount: Float!
+  searchType: String!
+  userAgent: String
+  userId: String
+}
+
+input SubmitResponseInput {
+  currency: String
+  message: String!
+  proposedDiamonds: [String!]
+  proposedPrice: Float
+}
+
+type Subscription {
+  messageAdded(chatId: String!): Message!
+}
+
+enum SubscriptionStatus {
+  ACTIVE
+  CANCELED
+  PAST_DUE
+}
+
+enum SubscriptionTier {
+  BASIC
+  ENTERPRISE
+  FREE
+  PROFESSIONAL
+}
+
+type SubscriptionType {
+  amount: Float
+  billingCycle: BillingCycle
+  canUseAdvancedSearch: Boolean!
+  canUseVectorSearch: Boolean!
+  cancelAtPeriodEnd: Boolean!
+  canceledAt: DateTime
+  createdAt: DateTime!
+  currency: String
+  currentPeriodEnd: DateTime
+  currentPeriodStart: DateTime
+  id: ID!
+  maxDiamonds: Float!
+  status: SubscriptionStatus!
+  tier: SubscriptionTier!
+  updatedAt: DateTime!
+  userId: String!
+}
+
+input UpdateDiamondInput {
+  isPublic: Boolean
+  name: String
+  pricePerCarat: Float
+  status: DiamondStatus
+  totalPrice: Float
+}
+
+input UpdateOrganizationInput {
+  description: String
+  domain: String
+  isActive: Boolean
+  name: String
+}
+
+type User {
+  createdAt: DateTime!
+  email: String!
+  id: ID!
+  isActive: Boolean!
+  isEmailVerified: Boolean!
+  isMobileVerified: Boolean!
+  mobile: String
+  name: String!
+  updatedAt: DateTime!
+}
+
+type UserBasic {
+  email: String!
+  id: ID!
+  name: String!
+}
+
+type UserBasicInfo {
+  email: String!
+  id: ID!
+  name: String!
+}

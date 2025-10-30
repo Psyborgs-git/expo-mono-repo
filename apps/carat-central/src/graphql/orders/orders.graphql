@@ -1,0 +1,121 @@
+# Order Fragments
+fragment Order_User on UserBasic {
+  id
+  name
+  email
+}
+
+fragment Order_Organization on OrganizationBasic {
+  id
+  name
+}
+
+fragment Order_Item on OrderItem {
+  id
+  diamondId
+  quantity
+  pricePerUnit
+  totalPrice
+  diamondSnapshot
+  createdAt
+}
+
+fragment Order_Basic on Order {
+  id
+  orderNumber
+  status
+  paymentStatus
+  paymentMethod
+  currency
+  totalAmount
+  buyerNotes
+  sellerNotes
+  shippingAddress
+  createdAt
+  updatedAt
+  canceledAt
+  completedAt
+  shippedAt
+  deliveredAt
+  buyer {
+    ...Order_User
+  }
+  buyerId
+  buyerOrg {
+    ...Order_Organization
+  }
+  buyerOrgId
+  seller {
+    ...Order_User
+  }
+  sellerId
+  sellerOrg {
+    ...Order_Organization
+  }
+  sellerOrgId
+  orderItems {
+    ...Order_Item
+  }
+}
+
+# Order Queries
+query Order_GetMy {
+  myOrders {
+    ...Order_Basic
+  }
+}
+
+query Order_GetMyOrg {
+  myOrgOrders {
+    ...Order_Basic
+  }
+}
+
+query Order_GetById($orderId: String!) {
+  order(orderId: $orderId) {
+    ...Order_Basic
+  }
+}
+
+# Order Mutations
+mutation Order_Create(
+  $diamondIds: [String!]!
+  $sellerOrgId: String!
+  $shippingAddress: String
+  $buyerNotes: String
+) {
+  createOrder(
+    diamondIds: $diamondIds
+    sellerOrgId: $sellerOrgId
+    shippingAddress: $shippingAddress
+    buyerNotes: $buyerNotes
+  ) {
+    ...Order_Basic
+  }
+}
+
+mutation Order_UpdateStatus($orderId: String!, $status: String!, $sellerNotes: String) {
+  updateOrderStatus(orderId: $orderId, status: $status, sellerNotes: $sellerNotes) {
+    ...Order_Basic
+  }
+}
+
+mutation Order_UpdatePaymentStatus(
+  $orderId: String!
+  $paymentStatus: String!
+  $paymentMethod: String
+) {
+  updatePaymentStatus(
+    orderId: $orderId
+    paymentStatus: $paymentStatus
+    paymentMethod: $paymentMethod
+  ) {
+    ...Order_Basic
+  }
+}
+
+mutation Order_Cancel($orderId: String!) {
+  cancelOrder(orderId: $orderId) {
+    ...Order_Basic
+  }
+}

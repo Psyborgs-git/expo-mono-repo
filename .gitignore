@@ -1,0 +1,9 @@
+node_modules
+dist
+lib
+.expo
+.expo-shared
+*.log
+*.lock
+.vscode
+.DS_Store

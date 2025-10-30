@@ -1,0 +1,51 @@
+{
+  "$schema": "https://unpkg.com/syncpack@13/schema.json",
+  "versionGroups": [
+    {
+      "label": "Core React packages must be the same",
+      "packages": ["**"],
+      "dependencies": ["react", "react-dom", "react-native"],
+      "pinVersion": "19.1.0",
+      "policy": "pinned"
+    },
+    {
+      "label": "React Native version in apps",
+      "packages": ["**"],
+      "dependencies": ["react-native"],
+      "pinVersion": "0.81.5",
+      "policy": "pinned"
+    },
+    {
+      "label": "Expo packages should be aligned",
+      "packages": ["**"],
+      "dependencies": ["expo", "expo-*"],
+      "dependencyTypes": ["prod", "dev"],
+      "policy": "sameRange"
+    },
+    {
+      "label": "Tamagui packages should be aligned",
+      "packages": ["**"],
+      "dependencies": ["tamagui", "@tamagui/*"],
+      "policy": "sameRange"
+    },
+    {
+      "label": "Apollo Client should be aligned",
+      "packages": ["**"],
+      "dependencies": ["@apollo/client", "graphql"],
+      "policy": "sameRange"
+    },
+    {
+      "label": "TypeScript should be aligned",
+      "packages": ["**"],
+      "dependencies": ["typescript"],
+      "policy": "sameRange"
+    }
+  ],
+  "semverGroups": [
+    {
+      "range": "",
+      "dependencyTypes": ["prod", "dev"],
+      "packages": ["**"]
+    }
+  ]
+}

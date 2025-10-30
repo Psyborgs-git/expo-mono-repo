@@ -1,0 +1,91 @@
+# Authentication Mutations
+mutation Auth_RequestEmailOTP($email: String!) {
+  caratRequestEmailOTP(email: $email) {
+    message
+    otpId
+  }
+}
+
+mutation Auth_RequestMobileOTP($mobile: String!, $countryCode: String! = "1") {
+  caratRequestMobileOTP(mobile: $mobile, countryCode: $countryCode) {
+    message
+    otpId
+  }
+}
+
+mutation Auth_VerifyEmailOTP($email: String!, $otp: String!) {
+  caratVerifyEmailOTP(email: $email, otp: $otp) {
+    accessToken
+    refreshToken
+    users {
+      id
+      email
+      mobile
+      countryCode
+    }
+  }
+}
+
+mutation Auth_VerifyMobileOTP($mobile: String!, $otp: String!, $countryCode: String! = "1") {
+  caratVerifyMobileOTP(mobile: $mobile, otp: $otp, countryCode: $countryCode) {
+    accessToken
+    refreshToken
+    users {
+      id
+      email
+      mobile
+      countryCode
+    }
+  }
+}
+
+mutation Auth_RefreshToken($refreshToken: String!) {
+  caratRefreshToken(refreshToken: $refreshToken) {
+    accessToken
+    refreshToken
+  }
+}
+
+mutation Auth_Logout {
+  caratLogout {
+    message
+  }
+}
+
+# User Queries
+query Auth_GetMe {
+  caratMe {
+    id
+    name
+    email
+    mobile
+    countryCode
+    companyName
+    isActive
+  }
+}
+
+query Auth_GetMyOrganizations {
+  myOrganizations {
+    id
+    name
+    description
+    domain
+    isActive
+    createdAt
+    updatedAt
+    organizationUsers {
+      id
+      userId
+      isOwner
+      isActive
+      joinedAt
+      role {
+        id
+        name
+        description
+        isAdminRole
+      }
+    }
+  }
+}

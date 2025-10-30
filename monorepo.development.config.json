@@ -1,0 +1,27 @@
+{
+  "environment": "development",
+  "apps": {
+    "@bdt/carat-central": {
+      "API_URL": "http://localhost:4000/graphql",
+      "DEBUG": true,
+      "LOG_LEVEL": "debug"
+    },
+    "@bdt/vloop": {
+      "API_URL": "http://localhost:4001/graphql",
+      "DEBUG": true,
+      "LOG_LEVEL": "debug"
+    },
+    "@bdt/parallax": {
+      "API_URL": "http://localhost:4002/graphql",
+      "DEBUG": true,
+      "LOG_LEVEL": "debug"
+    }
+  },
+  "packages": {},
+  "build": {
+    "minify": false,
+    "sourceMap": true,
+    "analyze": false
+  },
+  "deploy": {}
+}

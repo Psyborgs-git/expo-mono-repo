@@ -1,0 +1,32 @@
+{
+  "environment": "staging",
+  "apps": {
+    "@bdt/carat-central": {
+      "API_URL": "https://staging-api.carat-central.com/graphql",
+      "DEBUG": false,
+      "LOG_LEVEL": "warn"
+    },
+    "@bdt/vloop": {
+      "API_URL": "https://staging-api.vloop.com/graphql",
+      "DEBUG": false,
+      "LOG_LEVEL": "warn"
+    },
+    "@bdt/parallax": {
+      "API_URL": "https://staging-api.parallax.com/graphql",
+      "DEBUG": false,
+      "LOG_LEVEL": "warn"
+    }
+  },
+  "packages": {},
+  "build": {
+    "minify": true,
+    "sourceMap": true,
+    "analyze": false
+  },
+  "deploy": {
+    "staging": {
+      "enabled": true,
+      "autoPromote": true
+    }
+  }
+}

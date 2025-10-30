@@ -1,0 +1,36 @@
+{
+  "environment": "production",
+  "apps": {
+    "@bdt/carat-central": {
+      "API_URL": "https://api.carat-central.com/graphql",
+      "DEBUG": false,
+      "LOG_LEVEL": "error"
+    },
+    "@bdt/vloop": {
+      "API_URL": "https://api.vloop.com/graphql",
+      "DEBUG": false,
+      "LOG_LEVEL": "error"
+    },
+    "@bdt/parallax": {
+      "API_URL": "https://api.parallax.com/graphql",
+      "DEBUG": false,
+      "LOG_LEVEL": "error"
+    }
+  },
+  "packages": {},
+  "build": {
+    "minify": true,
+    "sourceMap": false,
+    "analyze": true
+  },
+  "deploy": {
+    "staging": {
+      "enabled": true,
+      "autoPromote": false
+    },
+    "production": {
+      "enabled": true,
+      "requireApproval": true
+    }
+  }
+}

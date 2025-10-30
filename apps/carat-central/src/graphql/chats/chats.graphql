@@ -1,0 +1,107 @@
+# Chat Fragments
+fragment Chat_Message on Message {
+  id
+  chatId
+  senderId
+  content
+  s3Key
+  isRead
+  readAt
+  createdAt
+}
+
+fragment Chat_Participant on ChatParticipant {
+  id
+  userId
+  chatId
+  joinedAt
+  lastReadAt
+}
+
+fragment Chat_Basic on Chat {
+  id
+  name
+  description
+  isGroup
+  createdAt
+  updatedAt
+  participants {
+    ...Chat_Participant
+  }
+}
+
+fragment Chat_WithMessages on Chat {
+  ...Chat_Basic
+  messages {
+    ...Chat_Message
+  }
+}
+
+# Chat Queries
+query Chat_GetMyChats {
+  myChats {
+    ...Chat_WithMessages
+  }
+}
+
+query Chat_GetChat($chatId: String!) {
+  chat(chatId: $chatId) {
+    ...Chat_WithMessages
+  }
+}
+
+query Chat_GetMessages($chatId: String!, $cursor: String, $limit: Float) {
+  chatMessages(chatId: $chatId, cursor: $cursor, limit: $limit) {
+    ...Chat_Message
+  }
+}
+
+# Chat Mutations
+mutation Chat_Create($participantIds: [String!]!, $name: String, $isGroup: Boolean) {
+  createChat(participantIds: $participantIds, name: $name, isGroup: $isGroup) {
+    ...Chat_Basic
+  }
+}
+
+mutation Chat_SendMessage($chatId: String!, $content: String, $receiverId: String, $s3Key: String) {
+  sendMessage(chatId: $chatId, content: $content, receiverId: $receiverId, s3Key: $s3Key) {
+    ...Chat_Message
+  }
+}
+
+mutation Chat_MarkMessageAsRead($messageId: String!) {
+  markMessageAsRead(messageId: $messageId) {
+    ...Chat_Message
+  }
+}
+
+mutation Chat_UpdateLastRead($chatId: String!) {
+  updateLastRead(chatId: $chatId) {
+    ...Chat_Basic
+  }
+}
+
+mutation Chat_DeleteMessage($messageId: String!) {
+  deleteMessage(messageId: $messageId) {
+    ...Chat_Message
+  }
+}
+
+mutation Chat_AddParticipant($chatId: String!, $userId: String!) {
+  addChatParticipant(chatId: $chatId, userId: $userId) {
+    ...Chat_Basic
+  }
+}
+
+mutation Chat_RemoveParticipant($chatId: String!, $userId: String!) {
+  removeChatParticipant(chatId: $chatId, userId: $userId) {
+    ...Chat_Basic
+  }
+}
+
+# Chat Subscriptions
+subscription Chat_MessageAdded($chatId: String!) {
+  messageAdded(chatId: $chatId) {
+    ...Chat_Message
+  }
+}

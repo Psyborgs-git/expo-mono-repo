@@ -1,0 +1,98 @@
+{
+  "name": "expo-mono-repo",
+  "version": "0.1.0",
+  "packageManager": "pnpm",
+  "workspaces": [
+    "apps/*",
+    "packages/*",
+    "tools"
+  ],
+  "apps": [
+    {
+      "name": "@bdt/carat-central",
+      "type": "mobile",
+      "path": "apps/carat-central",
+      "platforms": ["mobile"],
+      "dependencies": ["@bdt/ui", "@bdt/components", "@bdt/network"],
+      "startCommand": "expo start -c",
+      "port": 8081
+    },
+    {
+      "name": "@bdt/vloop",
+      "type": "mobile", 
+      "path": "apps/vloop",
+      "platforms": ["mobile"],
+      "dependencies": ["@bdt/ui", "@bdt/components", "@bdt/network"],
+      "startCommand": "expo start -c",
+      "port": 8082
+    },
+    {
+      "name": "@bdt/parallax",
+      "type": "mobile",
+      "path": "apps/parallax", 
+      "platforms": ["mobile"],
+      "dependencies": ["@bdt/ui", "@bdt/components", "@bdt/network"],
+      "startCommand": "expo start -c",
+      "port": 8083
+    }
+  ],
+  "packages": [
+    {
+      "name": "@bdt/ui",
+      "type": "ui",
+      "path": "packages/ui",
+      "exports": ["src/index.ts"],
+      "dependencies": [],
+      "peerDependencies": ["react", "react-native", "tamagui"],
+      "buildCommand": "tsc -p tsconfig.json"
+    },
+    {
+      "name": "@bdt/components", 
+      "type": "component",
+      "path": "packages/components",
+      "exports": ["src/index.ts"],
+      "dependencies": ["@bdt/ui"],
+      "peerDependencies": ["react", "react-native", "tamagui", "@bdt/ui"],
+      "buildCommand": "tsc -p tsconfig.json"
+    },
+    {
+      "name": "@bdt/network",
+      "type": "network", 
+      "path": "packages/network",
+      "exports": ["src/index.ts"],
+      "dependencies": [],
+      "peerDependencies": ["@apollo/client", "graphql", "react"],
+      "buildCommand": "tsc -p tsconfig.json"
+    }
+  ],
+  "tools": {
+    "cli": {
+      "name": "bdt",
+      "version": "0.1.0"
+    },
+    "build": {
+      "outputDir": "dist",
+      "sourceMap": true,
+      "minify": false,
+      "analyze": false,
+      "parallel": true,
+      "cache": true,
+      "cacheDir": ".cache"
+    },
+    "devServer": {
+      "port": 3000,
+      "host": "localhost", 
+      "open": true,
+      "hot": true,
+      "liveReload": true,
+      "watchPackages": true
+    },
+    "test": {
+      "framework": "jest",
+      "coverage": true,
+      "coverageThreshold": 80,
+      "watchMode": false,
+      "parallel": true
+    }
+  }
+}

@@ -1,0 +1,112 @@
+# Organization Management GraphQL Operations
+
+# Fragments
+fragment Org_Basic on Organization {
+  id
+  name
+  description
+  domain
+  isActive
+  createdAt
+  updatedAt
+}
+
+fragment Org_Member on OrganizationMember {
+  id
+  userId
+  organizationId
+  isOwner
+  isActive
+  joinedAt
+  roleId
+  role {
+    id
+    name
+    description
+    isActive
+    isAdminRole
+  }
+  user {
+    id
+    name
+    email
+    isActive
+  }
+}
+
+fragment Org_Detail on Organization {
+  ...Org_Basic
+  organizationUsers {
+    ...Org_Member
+  }
+  createdBy {
+    id
+    name
+    email
+  }
+}
+
+# Queries
+query Org_GetById($id: String!) {
+  organization(id: $id) {
+    ...Org_Detail
+  }
+}
+
+query Org_GetRoles($organizationId: String!) {
+  roles(organizationId: $organizationId) {
+    id
+    name
+    description
+    isActive
+    isAdminRole
+    createdAt
+    updatedAt
+  }
+}
+
+query Org_GetPermissions($organizationId: String!) {
+  permissions(organizationId: $organizationId) {
+    id
+    resource
+    action
+    description
+    isActive
+    createdAt
+  }
+}
+
+# Mutations
+mutation Org_Update($id: String!, $data: UpdateOrganizationInput!) {
+  updateOrganization(id: $id, data: $data) {
+    ...Org_Detail
+  }
+}
+
+mutation Org_Create($data: CreateOrganizationInput!) {
+  createOrganization(data: $data) {
+    ...Org_Detail
+  }
+}
+
+mutation Org_InviteUser($organizationId: String!, $userId: String!, $roleId: String) {
+  inviteUserToOrganization(organizationId: $organizationId, userId: $userId, roleId: $roleId) {
+    id
+    name
+    email
+    isActive
+  }
+}
+
+mutation Org_RemoveUser($organizationId: String!, $userId: String!) {
+  removeUserFromOrganization(organizationId: $organizationId, userId: $userId)
+}
+
+mutation Org_AssignRole($organizationId: String!, $userId: String!, $roleId: String!) {
+  assignRole(organizationId: $organizationId, userId: $userId, roleId: $roleId) {
+    id
+    name
+    email
+    isActive
+  }
+}

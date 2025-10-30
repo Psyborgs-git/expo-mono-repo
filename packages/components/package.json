@@ -1,0 +1,25 @@
+{
+  "name": "@bdt/components",
+  "version": "0.1.0",
+  "private": true,
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "files": ["src"],
+  "dependencies": {
+    "@bdt/ui": "workspace:*",
+    "@tamagui/lucide-icons": "*",
+    "tamagui": "*"
+  },
+  "peerDependencies": {
+    "react": "*",
+    "react-native": "*",
+    "tamagui": "*",
+    "@bdt/ui": "*"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json"
+  },
+  "devDependencies": {
+    "typescript": "^5.2.2"
+  }
+}

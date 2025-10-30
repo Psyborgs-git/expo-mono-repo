@@ -1,0 +1,12 @@
+{
+  "name": "@bdt/config",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Shared configuration files for the monorepo",
+  "main": "index.js",
+  "files": [
+    "eslint",
+    "typescript",
+    "metro"
+  ]
+}

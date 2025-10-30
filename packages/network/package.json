@@ -1,0 +1,25 @@
+{
+  "name": "@bdt/network",
+  "version": "0.1.0",
+  "private": true,
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "files": ["src"],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "jest"
+  },
+  "peerDependencies": {
+    "react": "*",
+    "react-native": "*",
+    "@apollo/client": "*",
+    "graphql": "*",
+    "rxjs": "*",
+    "@react-native-async-storage/async-storage": "*"
+  },
+  "devDependencies": {
+    "typescript": "^5.2.2",
+    "@types/react": "^19.0.0",
+    "@types/react-native": "^0.73.0"
+  }
+}

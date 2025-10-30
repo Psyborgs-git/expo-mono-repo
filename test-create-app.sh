@@ -1,0 +1,32 @@
+#!/bin/bash
+
+# Quick Start Script for Testing create-app CLI
+# This demonstrates the create-app tool by creating a test app
+
+echo "🚀 Expo App Factory - Quick Demo"
+echo "================================"
+echo ""
+echo "This script will demonstrate creating a new app using the create-app CLI."
+echo ""
+echo "You can use the create-app tool interactively with:"
+echo "  pnpm create-app"
+echo ""
+echo "Or directly with tsx:"
+echo "  pnpm tsx tools/src/create-app.ts"
+echo ""
+echo "Available Templates:"
+echo "  1. Basic       - Simple tabs navigation"
+echo "  2. Auth Flow   - Login, signup, protected routes"
+echo "  3. Chat        - Real-time messaging interface"
+echo "  4. Dashboard   - Data-heavy analytics app"
+echo ""
+echo "Features you can enable:"
+echo "  - GraphQL with Apollo Client"
+echo "  - Authentication"
+echo "  - Push Notifications"
+echo ""
+echo "To create a new app now, run:"
+echo "  pnpm create-app"
+echo ""
+echo "For non-interactive usage, you would need to use expect or similar tools."
+echo "For now, test manually with: pnpm create-app"

@@ -1,0 +1,132 @@
+# Request Fragments
+fragment Request_User on UserBasicInfo {
+  id
+  name
+  email
+}
+
+fragment Request_Organization on OrgBasicInfo {
+  id
+  name
+}
+
+fragment Request_Response on RequestResponse {
+  id
+  requestId
+  responderId
+  responderOrgId
+  message
+  proposedDiamonds
+  proposedPrice
+  currency
+  status
+  createdAt
+  acceptedAt
+  rejectedAt
+  responder {
+    ...Request_User
+  }
+  responderOrg {
+    ...Request_Organization
+  }
+}
+
+fragment Request_Basic on DiamondRequest {
+  id
+  requestNumber
+  title
+  description
+  status
+  isPublic
+  minCarat
+  maxCarat
+  minBudget
+  maxBudget
+  currency
+  shapes
+  clarityGrades
+  colorGrades
+  cutGrades
+  certificates
+  tags
+  responseCount
+  expiresAt
+  closedAt
+  createdAt
+  updatedAt
+  requesterId
+  requesterOrgId
+  requester {
+    ...Request_User
+  }
+  requesterOrg {
+    ...Request_Organization
+  }
+}
+
+fragment Request_WithResponses on DiamondRequest {
+  ...Request_Basic
+  responses {
+    ...Request_Response
+  }
+}
+
+# Request Queries
+query Request_GetMy {
+  myRequests {
+    ...Request_Basic
+  }
+}
+
+query Request_GetMyOrg {
+  myOrgRequests {
+    ...Request_Basic
+  }
+}
+
+query Request_GetPublic {
+  publicRequests {
+    ...Request_Basic
+  }
+}
+
+query Request_GetById($requestId: String!) {
+  request(requestId: $requestId) {
+    ...Request_WithResponses
+  }
+}
+
+query Request_GetResponses($requestId: String!) {
+  requestResponses(requestId: $requestId) {
+    ...Request_Response
+  }
+}
+
+# Request Mutations
+mutation Request_Create($input: CreateRequestInput!) {
+  createRequest(input: $input) {
+    ...Request_Basic
+  }
+}
+
+mutation Request_Update($requestId: String!, $data: String!) {
+  updateRequest(requestId: $requestId, data: $data)
+}
+
+mutation Request_SubmitResponse($requestId: String!, $input: SubmitResponseInput!) {
+  submitResponse(requestId: $requestId, input: $input) {
+    ...Request_Response
+  }
+}
+
+mutation Request_AcceptResponse($responseId: String!) {
+  acceptResponse(responseId: $responseId) {
+    ...Request_Response
+  }
+}
+
+mutation Request_RejectResponse($responseId: String!, $reason: String) {
+  rejectResponse(responseId: $responseId, reason: $reason) {
+    ...Request_Response
+  }
+}

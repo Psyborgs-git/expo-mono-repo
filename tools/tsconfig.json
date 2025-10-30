@@ -1,0 +1,43 @@
+{
+  "extends": "../tsconfig.base.json",
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "strict": false,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": false,
+    "jsx": "react-jsx",
+    "baseUrl": ".",
+    "paths": {
+      "@bdt/ui": ["../packages/ui/src"],
+      "@bdt/components": ["../packages/components/src"],
+      "@bdt/network": ["../packages/network/src"],
+      "@tools/*": ["./src/*"],
+      "@tools/cli": ["./src/cli"],
+      "@tools/build": ["./src/build"],
+      "@tools/config": ["./src/config"],
+      "@tools/dev-server": ["./src/dev-server"],
+      "@tools/workspace": ["./src/workspace"]
+    }
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "**/*.test.ts",
+    "**/*.spec.ts"
+  ]
+}

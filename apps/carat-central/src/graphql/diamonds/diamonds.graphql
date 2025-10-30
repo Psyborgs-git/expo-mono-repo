@@ -1,0 +1,120 @@
+# Diamond Fragments
+fragment Diamond_Basic on Diamond {
+  id
+  name
+  carat
+  pricePerCarat
+  totalPrice
+  clarity
+  color
+  cut
+  shape
+  status
+  isPublic
+  stockNumber
+  certificate
+  certificateNumber
+  createdAt
+  updatedAt
+  organizationId
+  ownerId
+}
+
+fragment Diamond_Connection on DiamondConnection {
+  edges {
+    cursor
+    node {
+      ...Diamond_Basic
+    }
+  }
+  pageInfo {
+    endCursor
+    hasNextPage
+    hasPreviousPage
+    startCursor
+  }
+  totalCount
+}
+
+# Diamond Queries
+query Diamond_GetAll($first: Int, $last: Int, $after: String, $before: String) {
+  diamonds(first: $first, last: $last, after: $after, before: $before) {
+    ...Diamond_Connection
+  }
+}
+
+query Diamond_GetPublic($first: Int, $last: Int, $after: String, $before: String) {
+  publicDiamonds(first: $first, last: $last, after: $after, before: $before) {
+    ...Diamond_Connection
+  }
+}
+
+query Diamond_GetById($id: String!) {
+  diamond(id: $id) {
+    ...Diamond_Basic
+  }
+}
+
+query Diamond_Search($filters: String!) {
+  searchDiamonds(filters: $filters) {
+    id
+    name
+    carat
+    pricePerCarat
+    totalPrice
+    clarity
+    color
+    cut
+    shape
+    stockNumber
+    similarity
+  }
+}
+
+query Diamond_FindSimilar($diamondId: String!, $limit: Float = 10) {
+  findSimilarDiamonds(diamondId: $diamondId, limit: $limit) {
+    id
+    name
+    carat
+    pricePerCarat
+    totalPrice
+    clarity
+    color
+    cut
+    shape
+    stockNumber
+    similarity
+  }
+}
+
+# Diamond Mutations
+mutation Diamond_Create($input: CreateDiamondInput!) {
+  createDiamond(input: $input) {
+    ...Diamond_Basic
+  }
+}
+
+mutation Diamond_Update($id: String!, $input: UpdateDiamondInput!) {
+  updateDiamond(id: $id, input: $input) {
+    ...Diamond_Basic
+  }
+}
+
+mutation Diamond_Delete($id: String!) {
+  deleteDiamond(id: $id) {
+    success
+    message
+  }
+}
+
+mutation Diamond_Publish($id: String!) {
+  publishDiamond(id: $id) {
+    ...Diamond_Basic
+  }
+}
+
+mutation Diamond_Unpublish($id: String!) {
+  unpublishDiamond(id: $id) {
+    ...Diamond_Basic
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "name": "@bdt/ui",
+  "version": "0.1.0",
+  "private": true,
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "files": ["src", "tamagui.config.ts"],
+  "dependencies": {
+    "@tamagui/config": "^1.135.4",
+    "@tamagui/core": "^1.135.4",
+    "@tamagui/font-inter": "^1.135.4",
+    "tamagui": "^1.135.4"
+  },
+  "peerDependencies": {
+    "react": "*",
+    "react-native": "*"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json"
+  },
+  "devDependencies": {
+    "typescript": "^5.2.2"
+  }
+}
