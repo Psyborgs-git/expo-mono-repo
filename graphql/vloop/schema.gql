@@ -1,0 +1,2552 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+enum AccessLevel {
+  ORGANIZATION
+  PRIVATE
+  PUBLIC
+}
+
+type Account implements Node {
+  account_code: String!
+  address_1: String
+  address_2: String
+  address_3: String
+  cityId: Int
+  countryId: Int
+  current_balance: Float
+
+  """Relay global ID for refetching via the node query"""
+  globalId: ID!
+  groupId: Int
+
+  """Globally unique identifier for refetching via node query"""
+  id: ID!
+  is_book: Boolean
+  name: String!
+  opening_balance: Float
+  stateId: Int
+  sub_group_code: String
+
+  """Transactions for this account with Relay pagination"""
+  transactions(after: String, before: String, first: Int, last: Int, orderBy: TransactionOrderByInput, where: TransactionWhereInput): TransactionConnection!
+  zipcodeId: Int
+}
+
+type AccountConnection {
+  """List of account edges containing nodes and cursors"""
+  edges: [AccountEdge!]!
+
+  """Pagination information"""
+  pageInfo: PageInfo!
+
+  """Total count of accounts available"""
+  totalCount: Int!
+}
+
+type AccountEdge {
+  """Cursor for this specific account"""
+  cursor: String!
+
+  """The actual account"""
+  node: Account!
+}
+
+type AccountGroup implements Node {
+  category: String!
+  code: String!
+
+  """Relay global ID for refetching via the node query"""
+  globalId: ID!
+
+  """Globally unique identifier for refetching via node query"""
+  id: ID!
+  name: String!
+}
+
+type AccountGroupConnection {
+  """List of account group edges containing nodes and cursors"""
+  edges: [AccountGroupEdge!]!
+
+  """Pagination information"""
+  pageInfo: PageInfo!
+
+  """Total count of account groups available"""
+  totalCount: Int!
+}
+
+type AccountGroupEdge {
+  """Cursor for this specific account group"""
+  cursor: String!
+
+  """The actual account group"""
+  node: AccountGroup!
+}
+
+input AccountGroupOrderByInput {
+  code: SortOrder
+  id: SortOrder
+  name: SortOrder
+}
+
+input AccountGroupWhereInput {
+  category: String
+  code: String
+  name: String
+}
+
+input AccountOrderByInput {
+  account_code: SortOrder
+  id: SortOrder
+  name: SortOrder
+  opening_balance: SortOrder
+}
+
+input AccountWhereInput {
+  account_code: String
+  groupId: Int
+  name: String
+  opening_balance: Float
+}
+
+input AddCartItemInput {
+  price: Float!
+  productId: Int
+  quantity: Int! = 1
+  serviceId: Int
+}
+
+input AddCollaboratorInput {
+  bookId: Int!
+  role: String! = "viewer"
+  userId: Int!
+}
+
+input AddCommentInput {
+  content: String!
+  isInternal: Boolean! = false
+  metadata: JSON
+  ticketId: Int!
+}
+
+input AddLeadNoteInput {
+  author: String
+  leadId: Int!
+  note: String!
+}
+
+input AddParticipantInput {
+  chatId: Int!
+  participantType: ParticipantType! = USER
+  userId: Int!
+}
+
+input AddUserToOrganizationInput {
+  isOwner: Boolean! = false
+  roleId: Int!
+  userId: Int!
+}
+
+type Application {
+  createdAt: DateTime!
+  createdById: Int
+  description: String
+
+  """Relay global ID for refetching via the node query"""
+  globalId: ID!
+  id: ID!
+  name: String!
+}
+
+type Appointment implements Node {
+  createdAt: DateTime!
+  customerEmail: String
+  customerId: Int
+  customerName: String!
+  customerPhone: String
+  duration: Int!
+
+  """Globally unique identifier for refetching via node query"""
+  id: ID!
+  notes: String
+  organizationId: Int!
+  scheduledAt: DateTime!
+  serviceId: Int!
+  status: String!
+  updatedAt: DateTime
+}
+
+input AssignPermissionInput {
+  permissionId: Int!
+  roleId: Int!
+}
+
+input AssignTicketInput {
+  departmentId: Int
+  notes: String
+  ticketId: Int!
+  userId: Int!
+}
+
+input AssignUserToDepartmentInput {
+  departmentId: Int!
+  userId: Int!
+}
+
+type Attachment implements Node {
+  fileName: String!
+  filePath: String!
+
+  """Globally unique identifier for refetching via node query"""
+  id: ID!
+  taskId: Int!
+  uploadedAt: DateTime!
+}
+
+type AuthTokenResponse {
+  accessToken: String!
+  expiresIn: Int!
+  refreshToken: String!
+  tokenType: String!
+  user: UserResponse
+}
+
+type Book {
+  accessLevel: AccessLevel!
+  collaborators: [BookCollaborator!]
+  collaboratorsConnection(after: String, before: String, first: Int, last: Int): BookCollaboratorConnection!
+  coverImage: String
+  createdAt: DateTime!
+  createdById: Int!
+  description: String
+
+  """Relay global ID for refetching via the node query"""
+  globalId: ID!
+  icon: String
+  id: Int!
+  isArchived: Boolean!
+  metadata: JSON
+  organizationId: Int
+  pagesConnection(after: String, before: String, first: Int, last: Int, orderBy: PageOrderByInput, where: PageWhereInput): PageConnection!
+  settings: JSON
+  slug: String!
+  title: String!
+  topics: [Topic!]
+  topicsConnection(after: String, before: String, first: Int, last: Int, orderBy: TopicOrderByInput, where: TopicWhereInput): TopicConnection!
+  updatedAt: DateTime
+  updatedById: Int
+}
+
+type BookCollaborator {
+  acceptedAt: DateTime
+  bookId: Int!
+  createdAt: DateTime!
+
+  """Relay global ID for refetching via the node query"""
+  globalId: ID!
+  id: Int!
+  invitedById: Int!
+  role: CollaboratorRole!
+  userId: Int!
+}
+
+type BookCollaboratorConnection {
+  """List of edges containing nodes and cursors"""
+  edges: [BookCollaboratorEdge!]!
+
+  """Pagination information"""
+  pageInfo: PageInfo!
+
+  """Total count of items available"""
+  totalCount: Int!
+}
+
+type BookCollaboratorEdge {
+  """Cursor for this specific item"""
+  cursor: String!
+
+  """The actual item"""
+  node: BookCollaborator!
+}
+
+type BookConnection {
+  edges: [BookEdge!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type BookEdge {
+  cursor: String!
+  node: Book!
+}
+
+input BookOrderByInput {
+  createdAt: SortOrder
+  id: SortOrder
+  title: SortOrder
+  updatedAt: SortOrder
+}
+
+input BookWhereInput {
+  accessLevel: String
+  description: String
+  isArchived: Boolean
+  title: String
+}
+
+type Cart implements Node {
+  cartItems: [CartItem!]!
+  createdAt: DateTime!
+
+  """Globally unique identifier for refetching via node query"""
+  id: ID!
+  organizationId: Int!
+  sessionId: String
+  updatedAt: DateTime
+  userId: Int
+}
+
+type CartItem implements Node {
+  cartId: Int!
+  createdAt: DateTime!
+
+  """Globally unique identifier for refetching via node query"""
+  id: ID!
+  price: Float!
+  productId: Int
+  quantity: Int!
+  serviceId: Int
+  updatedAt: DateTime
+}
+
+type Chat {
+  applicationId: Int
+  chatMessages: [ChatMessage!]
+  chatParticipants: [ChatParticipant!]
+  chatType: ChatType!
+  createdAt: DateTime!
+  id: Int!
+  lastMessage: ChatMessage
+  lastMessageAt: DateTime
+  metadata: JSON
+  name: String
+  unreadCount: Int!
+  updatedAt: DateTime
+}
+
+type ChatMessage {
+  chatId: Int!
+  content: JSON
+  createdAt: DateTime!
+  fileMetadata: JSON
+  id: Int!
+  isDeleted: Boolean!
+  isEdited: Boolean!
+  messageType: MessageType!
+  reactions: [MessageReaction!]
+  replyToId: Int
+  s3Key: String
+  s3Location: String
+  sender: ChatUser
+  senderId: Int
+  senderType: String!
+  updatedAt: DateTime
+}
+
+type ChatParticipant {
+  agentConfig: JSON
+  agentName: String
+  chatId: Int!
+  id: Int!
+  isActive: Boolean!
+  joinedAt: DateTime!
+  lastReadAt: DateTime
+  participantType: ParticipantType!
+  user: ChatUser
+  userId: Int
+}
+
+"""Type of chat conversation"""
+enum ChatType {
+  BOT
+  GAME
+  GROUP
+  ONE_TO_ONE
+}
+
+type ChatUser {
+  email: String
+  id: Int!
+  username: String
+}
+
+type City implements Node {
+  code: String!
+  countryId: Int!
+
+  """Globally unique identifier for refetching via node query"""
+  id: ID!
+  name: String!
+  stateId: Int!
+}
+
+enum CollaboratorRole {
+  ADMIN
+  EDITOR
+  VIEWER
+}
+
+type Comment implements Node {
+  author: String
+  content: String!
+  createdAt: DateTime!
+
+  """Globally unique identifier for refetching via node query"""
+  id: ID!
+  taskId: Int!
+}
+
+"""Component categories for organization"""
+enum ComponentCategory {
+  CONTENT
+  CUSTOM
+  INTERACTIVE
+  LAYOUT
+  MEDIA
+  NAVIGATION
+}
+
+"""Available component types"""
+enum ComponentType {
+  AUDIO_PLAYER
+  BREADCRUMBS
+  BUTTON
+  CAROUSEL
+  CODE_EMBED
+  COLUMNS
+  CONTAINER
+  CTA
+  CUSTOM
+  FOOTER
+  FORM_EMBED
+  GALLERY
+  GRID
+  HEADER
+  HERO
+  HTML_BLOCK
+  IFRAME
+  IMAGE
+  MENU
+  QUOTE
+  SEARCH
+  SECTION
+  SIDEBAR
+  TEXT_BLOCK
+  VIDEO
+  VIDEO_PLAYER
+}
+
+input ConvertLeadToCustomerInput {
+  accountId: Int
+  leadId: Int!
+  notes: String
+}
+
+type Country implements Node {
+  code: String!
+
+  """Globally unique identifier for refetching via node query"""
+  id: ID!
+  name: String!
+}
+
+input CreateAccountGroupInput {
+  category: String!
+  code: String!
+  name: String!
+}
+
+input CreateAppointmentInput {
+  customerEmail: String
+  customerId: Int
+  customerName: String!
+  customerPhone: String
+  duration: Int!
+  notes: String
+  scheduledAt: DateTime!
+  serviceId: Int!
+}
+
+input CreateBookInput {
+  accessLevel: String! = "ORGANIZATION"
+  coverImage: String
+  description: String
+  icon: String
+  metadata: JSON
+  settings: JSON
+  slug: String!
+  title: String!
+}
+
+input CreateCategoryInput {
+  color: String
+  description: String
+  icon: String
+  name: String!
+}
+
+input CreateChatInput {
+  chatType: ChatType!
+  metadata: JSON
+  name: String
+  participantIds: [Int!]!
+}
+
+input CreateDepartmentInput {
+  code: String!
+  description: String
+  managerId: Int
+  name: String!
+  parentDeptId: Int
+  settings: JSON
+}
+
+input CreateInvoiceInput {
+  customerEmail: String
+  customerName: String!
+  discount: Float! = 0
+  dueDate: DateTime
+  items: [InvoiceItemInput!]!
+  notes: String
+  orderId: Int
+  tax: Float! = 0
+}
+
+input CreateLeadInput {
+  address: String
+  assignedTo: String
+  cityId: Int
+  countryId: Int
+  email: String
+  name: String!
+  notes: String
+  phone: String
+  source: String
+  stateId: Int
+  status: String
+  zipcodeId: Int
+}
+
+input CreateOrderInput {
+  customerEmail: String
+  customerName: String!
+  customerPhone: String
+  discount: Float! = 0
+  items: [OrderItemInput!]!
+  notes: String
+  tax: Float! = 0
+}
+
+input CreateOrganizationInput {
+  description: String
+  domain: String
+  name: String!
+  settings: JSON
+}
+
+input CreatePageCommentInput {
+  content: String!
+  pageId: Int!
+  parentCommentId: Int
+}
+
+input CreatePageInput {
+  components: JSON
+  content: JSON!
+  isPublished: Boolean = false
+  media: JSON
+  metadata: JSON
+  order: Int = 0
+  parentPageId: Int
+  searchableText: String
+  slug: String!
+  templateId: Int
+  title: String!
+  topicId: Int!
+}
+
+input CreatePageTemplateInput {
+  category: String
+  components: JSON
+  content: JSON!
+  description: String
+  isPublic: Boolean! = false
+  name: String!
+  thumbnail: String
+}
+
+input CreatePermissionInput {
+  action: String!
+  description: String
+  resource: String!
+}
+
+input CreateProductInput {
+  category: String
+  compareAtPrice: Float
+  costPrice: Float
+  description: String
+  images: String
+  inventory: Int! = 0
+  name: String!
+  price: Float!
+  sku: String!
+  tags: String
+  trackInventory: Boolean! = true
+}
+
+input CreateRoleInput {
+  description: String
+  isAdminRole: Boolean
+  name: String!
+}
+
+input CreateScheduleInput {
+  dayOfWeek: Int!
+  endTime: String!
+  isAvailable: Boolean! = true
+  resourceId: Int!
+  resourceType: String!
+  startTime: String!
+}
+
+input CreateServiceInput {
+  category: String
+  description: String
+  duration: Int
+  name: String!
+  price: Float!
+}
+
+input CreateTicketInput {
+  assignedToId: Int
+  categoryId: Int
+  departmentId: Int
+  description: String
+  dueDate: String
+  metadata: JSON
+  priority: TicketPriority! = MEDIUM
+  tags: String
+  title: String!
+  type: TicketType! = SUPPORT
+}
+
+input CreateTopicInput {
+  bookId: Int!
+  description: String
+  icon: String
+  metadata: JSON
+  order: Int = 0
+  parentTopicId: Int
+  slug: String!
+  title: String!
+}
+
+input CreateTransactionItemInput {
+  amount: Float
+  item_description: String
+  quantity: Float
+  rate: Float
+  transactionId: Int
+}
+
+input CreateTransactionTypeInput {
+  code: String!
+  description: String
+  name: String!
+}
+
+input CreateWebsiteComponentInput {
+  category: String
+  config: JSON!
+  defaultProps: JSON
+  isPublic: Boolean! = false
+  isReusable: Boolean! = true
+  name: String!
+  schema: JSON
+  type: String!
+  websiteId: Int!
+}
+
+input CreateWebsiteFormInput {
+  description: String
+
+  """Form fields configuration as JSON array"""
+  fields: JSON!
+  isActive: Boolean = true
+  name: String!
+
+  """Form settings (notifications, success message, etc.)"""
+  settings: JSON
+  websiteId: Int!
+}
+
+input CreateWebsiteInput {
+  customDomain: String
+  description: String
+  domain: String
+  name: String!
+  settings: JSON
+  theme: String
+}
+
+input CreateWebsitePageInput {
+  content: JSON!
+  customCSS: String
+  customJS: String
+  metaDescription: String
+  metaKeywords: String
+  metaTitle: String
+  order: Int
+  parentPageId: Int
+  slug: String!
+  templateId: Int
+  title: String!
+  websiteId: Int!
+}
+
+type Customer implements Node {
+  account: Account
+  accountId: Int
+  customerSince: DateTime!
+
+  """Globally unique identifier for refetching via node query"""
+  id: ID!
+  leadId: Int!
+  loyaltyPoints: Int
+  notes: String
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+input DeleteMessageInput {
+  messageId: Int!
+}
+
+type Department implements Node {
+  children: [Department!]
+  code: String!
+  createdAt: DateTime!
+  description: String
+
+  """Globally unique identifier for refetching via node query"""
+  id: ID!
+  isActive: Boolean!
+  managerId: Int
+  memberCount: Int
+  name: String!
+  organizationId: Int!
+  parent: Department
+  parentDeptId: Int
+  settings: JSON
+  updatedAt: DateTime
+}
+
+type DepartmentHierarchy {
+  department: Department!
+  subdepartments: [DepartmentHierarchy!]
+}
+
+type DepartmentMember {
+  departmentId: Int!
+  id: ID!
+  joinedAt: DateTime!
+  user: User!
+  userId: Int!
+}
+
+type DepartmentsResponse {
+  departments: [Department!]!
+  skip: Int
+  take: Int
+  total: Int!
+}
+
+input FinalizeUploadInput {
+  alt: String
+  filename: String!
+  folder: String
+  metadata: JSON
+  mimeType: String!
+  originalName: String!
+  s3Bucket: String!
+  s3Key: String!
+  size: Int!
+  websiteId: Int!
+}
+
+input GetAvailableSlotsInput {
+  date: DateTime!
+  resourceId: Int!
+  resourceType: String!
+  slotDuration: Int! = 60
+}
+
+input InviteUserToOrganizationInput {
+  email: String
+  isOwner: Boolean
+  organizationId: Int!
+  roleId: Int
+  userId: Int
+}
+
+type Invoice {
+  createdAt: DateTime!
+  customerEmail: String
+  customerName: String!
+  discount: Float!
+  dueDate: DateTime
+  id: Int!
+  invoiceItems: [InvoiceItem!]!
+  invoiceNumber: String!
+  notes: String
+  orderId: Int
+  organizationId: Int!
+  paidAmount: Float!
+  paidAt: DateTime
+  status: String!
+  subtotal: Float!
+  tax: Float!
+  total: Float!
+  updatedAt: DateTime
+  userId: Int
+}
+
+type InvoiceItem {
+  createdAt: DateTime!
+  description: String!
+  id: Int!
+  invoiceId: Int!
+  productId: Int
+  quantity: Int!
+  serviceId: Int
+  total: Float!
+  unitPrice: Float!
+}
+
+input InvoiceItemInput {
+  description: String!
+  productId: Int
+  quantity: Int!
+  serviceId: Int
+  unitPrice: Float!
+}
+
+"""
+The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSON @specifiedBy(url: "http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf")
+
+input JoinChatInput {
+  chatId: Int!
+}
+
+type Lead implements Node {
+  """Timeline of activities recorded for this lead"""
+  activityFeed(after: String, before: String, first: Float, last: Float, orderBy: LeadActivityOrderByInput, where: LeadActivityWhereInput): LeadActivityConnection!
+  address: String
+  assignedTo: String
+  city: City
+  cityId: Int
+  country: Country
+  countryId: Int
+  createdAt: DateTime!
+  customer: Customer
+  email: String
+
+  """Relay global ID for refetching via the node query"""
+  globalId: ID!
+
+  """Globally unique identifier for refetching via node query"""
+  id: ID!
+  name: String!
+  notes: String
+  phone: String
+  source: String
+  state: State
+  stateId: Int
+  status: String
+  updatedAt: DateTime
+  zipcode: Zipcode
+  zipcodeId: Int
+}
+
+type LeadActivity implements Node {
+  activityDate: DateTime!
+  activityType: LeadActivityType!
+  createdAt: DateTime!
+  description: String
+
+  """Globally unique identifier for refetching via node query"""
+  id: ID!
+  leadId: Int!
+}
+
+type LeadActivityConnection {
+  """List of lead activity edges containing nodes and cursors"""
+  edges: [LeadActivityEdge!]!
+
+  """Pagination information"""
+  pageInfo: PageInfo!
+
+  """Total count of lead activities available"""
+  totalCount: Int!
+}
+
+type LeadActivityEdge {
+  """Cursor for this specific lead activity"""
+  cursor: String!
+
+  """The actual lead activity"""
+  node: LeadActivity!
+}
+
+input LeadActivityOrderByInput {
+  activityDate: SortOrder
+  createdAt: SortOrder
+}
+
+"""Represents the type of activity recorded for a lead"""
+enum LeadActivityType {
+  CONVERTED_TO_CUSTOMER
+  CREATED
+  NOTE_ADDED
+  STATUS_CHANGED
+  UPDATED
+}
+
+input LeadActivityWhereInput {
+  activityType: LeadActivityType
+  fromDate: DateTime
+  toDate: DateTime
+}
+
+type LeadConnection {
+  """List of lead edges containing nodes and cursors"""
+  edges: [LeadEdge!]!
+
+  """Pagination information"""
+  pageInfo: PageInfo!
+
+  """Total count of leads available"""
+  totalCount: Int!
+}
+
+type LeadEdge {
+  """Cursor for this specific lead"""
+  cursor: String!
+
+  """The actual lead"""
+  node: Lead!
+}
+
+input LeadOrderByInput {
+  createdAt: SortOrder
+  name: SortOrder
+  status: SortOrder
+}
+
+input LeadWhereInput {
+  assignedToId: Int
+  cityId: Int
+  countryId: Int
+  search: String
+  source: String
+  stateId: Int
+  status: String
+}
+
+input MarkAsReadInput {
+  chatId: Int!
+}
+
+type MessageReaction {
+  createdAt: DateTime!
+  id: Int!
+  messageId: Int!
+  reaction: String!
+  user: ChatUser
+  userId: Int!
+}
+
+"""Type of message content"""
+enum MessageType {
+  AUDIO
+  FILE
+  IMAGE
+  SYSTEM
+  TEXT
+  VIDEO
+}
+
+type Mutation {
+  addBookCollaborator(input: AddCollaboratorInput!): BookCollaborator!
+  addCartItem(input: AddCartItemInput!): CartItem!
+  addLeadNote(input: AddLeadNoteInput!): LeadActivity!
+  addParticipant(input: AddParticipantInput!): ChatParticipant!
+  addSubtask(taskId: Int!, title: String!): Subtask!
+  addTaskAttachment(fileName: String!, filePath: String!, taskId: Int!): Attachment!
+  addTaskComment(author: String, content: String!, taskId: Int!): Comment!
+
+  """Add a comment to a ticket"""
+  addTicketComment(input: AddCommentInput!): TicketComment!
+  addUserToOrganization(data: AddUserToOrganizationInput!, organizationId: Int!): Organization!
+
+  """Create a lead within an organization"""
+  assignOrganizationLead(leadId: Float!, userId: Float!): Lead!
+
+  """Assign a permission to a role (Admin only)"""
+  assignPermissionToRole(data: AssignPermissionInput!): Boolean!
+
+  """Assign a ticket to a user"""
+  assignTicket(input: AssignTicketInput!): Boolean!
+
+  """Assign a user to a department"""
+  assignUserToDepartment(input: AssignUserToDepartmentInput!): Boolean!
+  clearCart: Boolean!
+  convertLeadToCustomer(input: ConvertLeadToCustomerInput!): Customer!
+  createAccount(account_code: String!, address_1: String, address_2: String, address_3: String, cityId: Int, countryId: Int, groupId: Int, is_book: Boolean, name: String!, opening_balance: Float, stateId: Int, sub_group_code: String, zipcodeId: Int): Account!
+  createAccountGroup(input: CreateAccountGroupInput!): AccountGroup!
+  createAppointment(input: CreateAppointmentInput!): Appointment!
+  createBook(input: CreateBookInput!): Book!
+  createChat(input: CreateChatInput!): Chat!
+
+  """Create a new department"""
+  createDepartment(input: CreateDepartmentInput!): Department!
+  createInvoice(input: CreateInvoiceInput!): Invoice!
+  createInvoiceFromOrder(orderId: Int!): Invoice!
+  createLead(input: CreateLeadInput!): Lead!
+  createOrder(input: CreateOrderInput!): Order!
+  createOrderFromCart(cartId: Int!): Order!
+  createOrganization(data: CreateOrganizationInput!): Organization!
+  createPage(input: CreatePageInput!): Page!
+  createPageComment(input: CreatePageCommentInput!): PageComment!
+  createPageTemplate(input: CreatePageTemplateInput!): PageTemplate!
+
+  """Create a new permission (Admin only)"""
+  createPermission(data: CreatePermissionInput!): Permission!
+  createProduct(input: CreateProductInput!): Product!
+
+  """Create a new role (Admin only)"""
+  createRole(data: CreateRoleInput!): Role!
+  createSchedule(input: CreateScheduleInput!): Schedule!
+  createService(input: CreateServiceInput!): Service!
+  createTask(assignedToId: Int, description: String, dueDate: DateTime, parentTask: Int, priority: String, status: String, tags: String, title: String!): Task!
+
+  """Create a new ticket"""
+  createTicket(input: CreateTicketInput!): Ticket!
+
+  """Create a ticket category"""
+  createTicketCategory(input: CreateCategoryInput!): TicketCategory!
+  createTopic(input: CreateTopicInput!): Topic!
+  createTransaction(accountId: Int, amount: Float!, book_code: String!, is_credit: Boolean!, remarks: String, transactionTypeId: Int, transaction_date: DateTime!, voucher_number: String): Transaction!
+  createTransactionItem(input: CreateTransactionItemInput!): TransactionItem!
+  createTransactionType(input: CreateTransactionTypeInput!): TransactionType!
+  createWebsite(input: CreateWebsiteInput!): Website!
+  createWebsiteComponent(input: CreateWebsiteComponentInput!): WebsiteComponent!
+  createWebsiteForm(input: CreateWebsiteFormInput!): WebsiteForm!
+  createWebsitePage(input: CreateWebsitePageInput!): WebsitePage!
+  deleteAccount(id: Int!): Boolean!
+  deleteAccountGroup(id: Int!): Boolean!
+  deleteAppointment(id: Int!): Boolean!
+  deleteBook(id: Int!): Book!
+
+  """Delete a department"""
+  deleteDepartment(id: Int!): Boolean!
+  deleteLead(id: Float!): Boolean!
+  deleteMessage(input: DeleteMessageInput!): ChatMessage!
+  deletePage(id: Int!): Page!
+  deletePageComment(commentId: Int!): PageComment!
+  deletePageTemplate(templateId: Int!): PageTemplate!
+
+  """Delete a role (Admin only)"""
+  deleteRole(id: Int!): Boolean!
+  deleteSchedule(scheduleId: Int!): Boolean!
+  deleteService(id: Int!): Boolean!
+  deleteTask(id: Int!): Boolean!
+
+  """Delete a ticket"""
+  deleteTicket(id: Int!): Boolean!
+
+  """Delete a ticket comment"""
+  deleteTicketComment(id: Int!): Boolean!
+  deleteTopic(id: Int!): Topic!
+  deleteTransaction(id: Int!): Boolean!
+  deleteTransactionItem(id: Int!): Boolean!
+  deleteTransactionType(id: Int!): Boolean!
+  deleteWebsite(id: Int!): Boolean!
+  deleteWebsiteAsset(id: Int!): Boolean!
+  deleteWebsiteComponent(id: Int!): Boolean!
+  deleteWebsiteForm(id: Int!): Boolean!
+  deleteWebsitePage(id: Int!): Boolean!
+  duplicateWebsiteComponent(id: Int!): WebsiteComponent!
+  duplicateWebsitePage(id: Int!, title: String): WebsitePage!
+  finalizeAssetUpload(input: FinalizeUploadInput!): WebsiteAsset!
+
+  """Invite a user to join an organization by email or userId"""
+  inviteUserToOrganization(input: InviteUserToOrganizationInput!): Organization!
+  joinGameChat(input: JoinChatInput!): ChatParticipant!
+
+  """Login with email OTP"""
+  loginWithEmailOTP(email: String!, organizationId: Int, otp: String!): AuthTokenResponse!
+
+  """Login with mobile OTP"""
+  loginWithMobileOTP(countryCode: String! = "+1", mobile: String!, organizationId: Int, otp: String!): AuthTokenResponse!
+
+  """Revoke access token (logout)"""
+  logout: Boolean!
+
+  """Revoke all tokens (logout from all devices)"""
+  logoutAllDevices: Boolean!
+  markAsRead(input: MarkAsReadInput!): ChatParticipant!
+  publishWebsite(id: Int!): Website!
+  publishWebsitePage(id: Int!): WebsitePage!
+  reactToMessage(input: ReactToMessageInput!): MessageReaction
+  recordPayment(input: RecordPaymentInput!): Invoice!
+
+  """Refresh access token"""
+  refreshToken(refreshToken: String!): AuthTokenResponse!
+  removeBookCollaborator(bookId: Int!, collaboratorId: Int!): BookCollaborator!
+  removeCartItem(cartItemId: Int!): Boolean!
+  removeParticipant(input: RemoveParticipantInput!): ChatParticipant!
+  removeUserFromOrganization(organizationId: Int!, userId: Int!): Boolean!
+  reorderWebsitePages(pageIds: [Int!]!): Boolean!
+  requestAssetUpload(input: RequestUploadInput!): UploadUrlResponse!
+
+  """Send OTP to email address"""
+  requestEmailOTP(email: String!): OTPResponse!
+
+  """Send OTP to mobile number"""
+  requestOTP(countryCode: String! = "+1", mobile: String!): OTPResponse!
+
+  """Revoke a permission from a role (Admin only)"""
+  revokePermissionFromRole(data: AssignPermissionInput!): Boolean!
+
+  """Send OTP to email address"""
+  sendEmailOTP(email: String!): OTPResponse!
+  sendMessage(input: SendMessageInput!): ChatMessage!
+
+  """Send OTP to mobile number"""
+  sendMobileOTP(countryCode: String! = "+1", mobile: String!): OTPResponse!
+  setTypingIndicator(chatId: Int!, isTyping: Boolean!): Boolean!
+  submitForm(input: SubmitFormInput!): WebsiteFormSubmission!
+
+  """Unassign a ticket"""
+  unassignTicket(ticketId: Int!): Boolean!
+
+  """Remove a user from their department"""
+  unassignUserFromDepartment(userId: Int!): Boolean!
+  unpublishWebsitePage(id: Int!): WebsitePage!
+  updateAccount(account_code: String, address_1: String, address_2: String, address_3: String, cityId: Int, countryId: Int, current_balance: Float, groupId: Int, id: Int!, is_book: Boolean, name: String, opening_balance: Float, stateId: Int, sub_group_code: String, zipcodeId: Int): Account!
+  updateAccountGroup(input: UpdateAccountGroupInput!): AccountGroup!
+  updateAppointmentStatus(input: UpdateAppointmentStatusInput!): Appointment!
+  updateBook(input: UpdateBookInput!): Book!
+  updateCartItem(input: UpdateCartItemInput!): CartItem
+
+  """Update an existing department"""
+  updateDepartment(input: UpdateDepartmentInput!): Department!
+  updateInvoiceStatus(input: UpdateInvoiceStatusInput!): Invoice!
+  updateLead(input: UpdateLeadInput!): Lead!
+  updateMessage(input: UpdateMessageInput!): ChatMessage!
+  updateOrderStatus(input: UpdateOrderStatusInput!): Order!
+  updateOrganization(data: UpdateOrganizationInput!, id: Int!): Organization!
+  updatePage(input: UpdatePageInput!): Page!
+
+  """Update a role (Admin only)"""
+  updateRole(data: UpdateRoleInput!): Role!
+  updateSchedule(input: UpdateScheduleInput!): Schedule!
+  updateService(input: UpdateServiceInput!): Service!
+  updateSubtask(id: Int!, isCompleted: Boolean, title: String): Subtask!
+  updateTask(assignedToId: Int, description: String, dueDate: DateTime, id: Int!, isCompleted: Boolean, priority: String, status: String, tags: String, title: String): Task!
+
+  """Update an existing ticket"""
+  updateTicket(input: UpdateTicketInput!): Ticket!
+
+  """Update a ticket comment"""
+  updateTicketComment(input: UpdateCommentInput!): TicketComment!
+
+  """Update ticket status"""
+  updateTicketStatus(input: UpdateTicketStatusInput!): Ticket!
+  updateTopic(input: UpdateTopicInput!): Topic!
+  updateTransaction(accountId: Int, amount: Float, book_code: String, id: Int!, is_credit: Boolean, remarks: String, transactionTypeId: Int, transaction_date: DateTime, voucher_number: String): Transaction!
+  updateTransactionItem(input: UpdateTransactionItemInput!): TransactionItem!
+  updateTransactionType(input: UpdateTransactionTypeInput!): TransactionType!
+
+  """Update a user's role and status within an organization"""
+  updateUserRole(input: UpdateUserRoleInput!): Boolean!
+  updateWebsite(id: Int!, input: UpdateWebsiteInput!): Website!
+  updateWebsiteComponent(id: Int!, input: UpdateWebsiteComponentInput!): WebsiteComponent!
+  updateWebsiteForm(id: Int!, input: UpdateWebsiteFormInput!): WebsiteForm!
+  updateWebsitePage(id: Int!, input: UpdateWebsitePageInput!): WebsitePage!
+
+  """Verify email OTP and login"""
+  verifyEmailOTP(email: String!, organizationId: Int, otp: String!): AuthTokenResponse!
+
+  """Verify mobile OTP and login"""
+  verifyOTP(countryCode: String! = "+1", mobile: String!, organizationId: Int, otp: String!): AuthTokenResponse!
+}
+
+"""An object with a globally unique ID, refetchable via the node query"""
+interface Node {
+  """Globally unique identifier (base64-encoded TypeName:numericId)"""
+  id: ID!
+}
+
+type OTPResponse {
+  message: String!
+  otpId: Int
+  success: Boolean!
+}
+
+type Order implements Node {
+  createdAt: DateTime!
+  customerEmail: String
+  customerName: String!
+  customerPhone: String
+  discount: Float!
+
+  """Globally unique identifier for refetching via node query"""
+  id: ID!
+  notes: String
+  orderItems: [OrderItem!]!
+  orderNumber: String!
+  organizationId: Int!
+  status: String!
+  subtotal: Float!
+  tax: Float!
+  total: Float!
+  updatedAt: DateTime
+  userId: Int
+}
+
+type OrderItem implements Node {
+  createdAt: DateTime!
+
+  """Globally unique identifier for refetching via node query"""
+  id: ID!
+  orderId: Int!
+  productId: Int
+  productName: String!
+  quantity: Int!
+  serviceId: Int
+  total: Float!
+  unitPrice: Float!
+}
+
+input OrderItemInput {
+  productId: Int
+  productName: String!
+  quantity: Int!
+  serviceId: Int
+  unitPrice: Float!
+}
+
+type Organization {
+  createdAt: DateTime!
+  createdById: Int!
+  description: String
+  domain: String
+
+  """Relay global ID for refetching via the node query"""
+  globalId: ID!
+  id: Int!
+  isActive: Boolean!
+  members: [OrganizationUser!]
+  name: String!
+  roles: [OrganizationRole!]
+  updatedAt: DateTime
+}
+
+type OrganizationConnection {
+  """List of edges containing nodes and cursors"""
+  edges: [OrganizationEdge!]!
+
+  """Pagination information"""
+  pageInfo: PageInfo!
+
+  """Total count of items available"""
+  totalCount: Int!
+}
+
+type OrganizationEdge {
+  """Cursor for this specific item"""
+  cursor: String!
+
+  """The actual item"""
+  node: Organization!
+}
+
+type OrganizationMember {
+  email: String
+  id: Int!
+  isActive: Boolean!
+  isOwner: Boolean!
+  joinedAt: DateTime!
+  organizationId: Int!
+  roleDescription: String
+  roleId: Int
+  roleName: String
+  userId: Int!
+  username: String
+}
+
+type OrganizationMembersResponse {
+  items: [OrganizationMember!]!
+  total: Int!
+}
+
+input OrganizationOrderByInput {
+  createdAt: SortOrder
+  name: SortOrder
+  updatedAt: SortOrder
+}
+
+type OrganizationRole {
+  createdAt: DateTime!
+  description: String
+  id: Int!
+  isActive: Boolean!
+  isDefault: Boolean!
+  name: String!
+  organizationId: Int!
+  updatedAt: DateTime
+}
+
+type OrganizationUser {
+  id: Int!
+  isActive: Boolean!
+  isOwner: Boolean!
+  joinedAt: DateTime!
+  organizationId: Int!
+  userId: Int!
+}
+
+input OrganizationWhereInput {
+  description: String
+  domain: String
+  isActive: Boolean
+  name: String
+
+  """Search across name, description, and domain"""
+  search: String
+}
+
+type Page {
+  childPages: [Page!]
+  components: JSON
+  content: JSON!
+  createdAt: DateTime!
+  createdById: Int!
+  embeddings: JSON
+
+  """Relay global ID for refetching via the node query"""
+  globalId: ID!
+  id: Int!
+  isPublished: Boolean!
+  media: JSON
+  metadata: JSON
+  order: Int!
+  parentPageId: Int
+  publishedAt: DateTime
+  searchableText: String
+  slug: String!
+  templateId: Int
+  title: String!
+  topicId: Int!
+  updatedAt: DateTime
+  updatedById: Int
+  version: Int!
+}
+
+type PageComment {
+  content: String!
+  createdAt: DateTime!
+  createdById: Int!
+  id: Int!
+  isDeleted: Boolean!
+  pageId: Int!
+  parentCommentId: Int
+  replies: [PageComment!]
+  updatedAt: DateTime
+  updatedById: Int
+}
+
+type PageConnection {
+  """List of edges containing nodes and cursors"""
+  edges: [PageEdge!]!
+
+  """Pagination information"""
+  pageInfo: PageInfo!
+
+  """Total count of items available"""
+  totalCount: Int!
+}
+
+type PageEdge {
+  """Cursor for this specific item"""
+  cursor: String!
+
+  """The actual item"""
+  node: Page!
+}
+
+type PageInfo {
+  """Cursor pointing to the last item in the current page"""
+  endCursor: String
+
+  """Whether there are more items after the current cursor"""
+  hasNextPage: Boolean!
+
+  """Whether there are more items before the current cursor"""
+  hasPreviousPage: Boolean!
+
+  """Cursor pointing to the first item in the current page"""
+  startCursor: String
+}
+
+input PageOrderByInput {
+  createdAt: SortOrder
+  order: SortOrder
+  publishedAt: SortOrder
+  title: SortOrder
+  updatedAt: SortOrder
+}
+
+type PageTemplate {
+  category: String
+  components: JSON
+  content: JSON!
+  createdAt: DateTime!
+  createdById: Int!
+  description: String
+  id: Int!
+  isPublic: Boolean!
+  name: String!
+  organizationId: Int
+  thumbnail: String
+  updatedAt: DateTime
+}
+
+type PageVersion {
+  components: JSON
+  content: JSON!
+  createdAt: DateTime!
+  createdById: Int!
+  id: Int!
+  media: JSON
+  metadata: JSON
+  pageId: Int!
+  version: Int!
+}
+
+input PageWhereInput {
+  isPublished: Boolean
+  search: String
+  searchableText: String
+  slug: String
+  title: String
+  topicId: Int
+}
+
+"""Type of chat participant"""
+enum ParticipantType {
+  BOT
+  SYSTEM
+  USER
+}
+
+type Permission {
+  action: String!
+  createdAt: DateTime!
+  description: String
+  id: Int!
+  isActive: Boolean!
+  resource: String!
+}
+
+type PermissionsResponse {
+  items: [Permission!]!
+  total: Int!
+}
+
+type Product implements Node {
+  category: String
+  compareAtPrice: Float
+  costPrice: Float
+  createdAt: DateTime!
+  description: String
+
+  """Globally unique identifier for refetching via node query"""
+  id: ID!
+  images: String
+  inventory: Int!
+  isActive: Boolean!
+  name: String!
+  organizationId: Int!
+  price: Float!
+  sku: String!
+  tags: String
+  trackInventory: Boolean!
+  updatedAt: DateTime
+}
+
+type Query {
+  account(id: Int!): Account
+
+  """
+  Fetch account groups with Relay-style pagination, filtering, and sorting
+  """
+  accountGroups(after: String, before: String, first: Int, last: Float, orderBy: AccountGroupOrderByInput, where: AccountGroupWhereInput): AccountGroupConnection!
+
+  """Fetch accounts with Relay-style pagination, filtering, and sorting"""
+  accounts(after: String, before: String, first: Int, last: Int, orderBy: AccountOrderByInput, where: AccountWhereInput): AccountConnection!
+  appointment(id: Int!): Appointment
+  appointments(customerId: Int): [Appointment!]!
+  assetDownloadUrl(id: Int!): String!
+
+  """Get all leads for an organization"""
+  assignOrganizationLead(leadId: Float!, userId: Float!): [Lead!]!
+  availableSlots(input: GetAvailableSlotsInput!): [TimeSlot!]!
+  book(id: Int!): Book!
+  bookCollaborators(bookId: Int!): [BookCollaborator!]!
+  books(after: String, before: String, first: Int, last: Int, orderBy: BookOrderByInput, where: BookWhereInput): BookConnection!
+  cart: Cart!
+  chat(id: Int!): Chat!
+  chats: [Chat!]!
+
+  """Get current organization ID"""
+  currentOrganization: Int
+
+  """Get a single department by ID"""
+  department(id: Int!): Department!
+
+  """Get department hierarchy (flat list ordered by parent)"""
+  departmentHierarchy: [Department!]!
+
+  """Get members of a specific department"""
+  departmentMembers(departmentId: Int!): [DepartmentMember!]!
+
+  """Get all departments in the organization with pagination"""
+  departments(skip: Int, take: Int): DepartmentsResponse!
+  invoice(id: Int!): Invoice
+  invoices: [Invoice!]!
+  lead(id: Float!): Lead!
+
+  """Fetch leads with Relay-style pagination, filtering, and sorting"""
+  leads(after: String, before: String, first: Float, last: Float, orderBy: LeadOrderByInput, where: LeadWhereInput): LeadConnection!
+
+  """Get current user profile"""
+  me: UserResponse!
+  messages(chatId: Int!, skip: Int! = 0, take: Int! = 50): [ChatMessage!]!
+  myOrganizations: [Organization!]!
+
+  """Get token usage statistics"""
+  myTokenStats: TokenStatsResponse!
+
+  """
+  Fetches an object given its globally unique ID. Returns null if the object does not exist or the user lacks permission.
+  """
+  node(
+    """The globally unique ID"""
+    id: ID!
+  ): Node
+  order(id: Int!): Order
+  orders: [Order!]!
+  organization(id: Int!): Organization!
+
+  """Get all members of an organization with their roles"""
+  organizationMembers(organizationId: Int!, skip: Int, take: Int): OrganizationMembersResponse!
+  page(id: Int!): Page!
+  pageComments(pageId: Int!): [PageComment!]!
+  pageTemplates: [PageTemplate!]!
+  pageVersions(pageId: Int!): [PageVersion!]!
+  pagesByBook(after: String, before: String, bookId: Int, bookSlug: String, first: Int, last: Int, orderBy: PageOrderByInput, where: PageWhereInput): PageConnection!
+
+  """Get all permissions with pagination"""
+  permissions(skip: Int, take: Int): PermissionsResponse!
+  product(id: Int!): Product
+  products: [Product!]!
+  publicComponents(category: ComponentCategory, type: ComponentType): [WebsiteComponent!]!
+
+  """Get a specific role by ID"""
+  role(id: Int!): Role!
+
+  """Get all permissions for a specific role"""
+  rolePermissions(roleId: Int!): [Permission!]!
+
+  """Get all roles with pagination"""
+  roles(skip: Int, take: Int): RolesResponse!
+  schedules(resourceId: Int, resourceType: String): [Schedule!]!
+  searchBooks(searchTerm: String!): [Book!]!
+
+  """Search all organizations with Relay-style pagination"""
+  searchOrganizations(after: String, before: String, first: Int, last: Int, orderBy: OrganizationOrderByInput, where: OrganizationWhereInput): OrganizationConnection!
+  service(id: Int!): Service
+  services: [Service!]!
+  task(id: Int!): Task
+
+  """Fetch tasks with Relay-style pagination, filtering, and sorting"""
+  tasks(after: String, before: String, first: Int, last: Int, orderBy: TaskOrderByInput, where: TaskWhereInput): TaskConnection!
+
+  """Get a single ticket by ID"""
+  ticket(id: Int!): Ticket!
+
+  """Get all ticket categories"""
+  ticketCategories: [TicketCategory!]!
+
+  """Get ticket statistics"""
+  ticketStats(departmentId: Int): TicketStatsResponse!
+
+  """Get all tickets with filters and pagination"""
+  tickets(filter: TicketFilterInput, skip: Int, take: Int): TicketsResponse!
+  topicsByBook(after: String, before: String, bookId: Int, bookSlug: String, first: Int, last: Int, orderBy: TopicOrderByInput, where: TopicWhereInput): TopicConnection!
+
+  """
+  Fetch transaction items with Relay-style pagination, filtering, and sorting
+  """
+  transactionItems(after: String, before: String, first: Int, last: Float, orderBy: TransactionItemOrderByInput, where: TransactionItemWhereInput): TransactionItemConnection!
+
+  """
+  Fetch transaction types with Relay-style pagination, filtering, and sorting
+  """
+  transactionTypes(after: String, before: String, first: Int, last: Float, orderBy: TransactionTypeOrderByInput, where: TransactionTypeWhereInput): TransactionTypeConnection!
+
+  """Fetch transactions with Relay-style pagination, filtering, and sorting"""
+  transactions(after: String, before: String, first: Int, last: Int, orderBy: TransactionOrderByInput, where: TransactionWhereInput): TransactionConnection!
+  typingIndicators(chatId: Int!): [TypingIndicator!]!
+
+  """Get all permissions for the current user"""
+  userPermissions: [Permission!]!
+  website(id: Int!): Website!
+  websiteAsset(id: Int!): WebsiteAsset!
+  websiteAssets(folder: String, websiteId: Int!): [WebsiteAsset!]!
+  websiteComponent(id: Int!): WebsiteComponent!
+  websiteComponents(category: ComponentCategory, isPublic: Boolean, isReusable: Boolean, type: ComponentType, websiteId: Int!): [WebsiteComponent!]!
+  websiteForm(id: Int!): WebsiteForm
+  websiteForms(organizationId: Int, websiteId: Int): [WebsiteForm!]!
+  websitePage(id: Int!): WebsitePage!
+  websitePageBySlug(slug: String!, websiteId: Int!): WebsitePage!
+  websitePageVersions(pageId: Int!): [WebsitePageVersion!]!
+  websitePages(includeUnpublished: Boolean! = false, parentPageId: Int, websiteId: Int!): [WebsitePage!]!
+  websites: [Website!]!
+}
+
+input ReactToMessageInput {
+  messageId: Int!
+  reaction: String!
+}
+
+type ReactionUpdatedPayload {
+  added: Boolean!
+  messageId: Int!
+  reaction: String
+  userId: Int!
+}
+
+input RecordPaymentInput {
+  amount: Float!
+  invoiceId: Int!
+}
+
+input RemoveParticipantInput {
+  chatId: Int!
+  userId: Int!
+}
+
+input RequestUploadInput {
+  filename: String!
+  folder: String
+  mimeType: String!
+  websiteId: Int!
+}
+
+type Role {
+  createdAt: DateTime!
+  description: String
+  id: Int!
+  isActive: Boolean!
+  isAdminRole: Boolean!
+  name: String!
+  permissions: [Permission!]
+  updatedAt: DateTime
+}
+
+type RolesResponse {
+  items: [Role!]!
+  total: Int!
+}
+
+type Schedule {
+  createdAt: DateTime!
+  dayOfWeek: Int!
+  endTime: String!
+  id: Int!
+  isAvailable: Boolean!
+  organizationId: Int!
+  resourceId: Int!
+  resourceType: String!
+  startTime: String!
+  updatedAt: DateTime
+}
+
+input SendMessageInput {
+  chatId: Int!
+  content: JSON
+  fileMetadata: JSON
+  messageType: MessageType!
+  replyToId: Int
+  s3Key: String
+  s3Location: String
+}
+
+type Service implements Node {
+  category: String
+  createdAt: DateTime!
+  description: String
+  duration: Int
+
+  """Globally unique identifier for refetching via node query"""
+  id: ID!
+  isActive: Boolean!
+  name: String!
+  organizationId: Int!
+  price: Float!
+  updatedAt: DateTime
+}
+
+"""Sort order enum for field ordering"""
+enum SortOrder {
+  asc
+  desc
+}
+
+type State implements Node {
+  code: String!
+  countryId: Int!
+
+  """Globally unique identifier for refetching via node query"""
+  id: ID!
+  name: String!
+}
+
+input SubmitFormInput {
+  """Form submission data"""
+  data: JSON!
+  formId: Int!
+
+  """Additional metadata"""
+  metadata: JSON
+}
+
+type Subscription {
+  chatCreated(userId: Int!): Chat!
+  messageDeleted(chatId: Int!): ChatMessage!
+  messageReceived(chatId: Int!): ChatMessage!
+  messageUpdated(chatId: Int!): ChatMessage!
+  participantAdded(chatId: Int!): ChatParticipant!
+  participantRemoved(chatId: Int!): ChatParticipant!
+  reactionUpdated(chatId: Int!): ReactionUpdatedPayload!
+  typingIndicator(chatId: Int!): TypingIndicator!
+}
+
+type Subtask implements Node {
+  createdAt: DateTime!
+
+  """Globally unique identifier for refetching via node query"""
+  id: ID!
+  isCompleted: Boolean!
+  taskId: Int!
+  title: String!
+  updatedAt: DateTime
+}
+
+type Task implements Node {
+  assignedTo: String
+  attachments: [Attachment!]
+  comments: [Comment!]
+  createdAt: DateTime!
+  createdById: Int
+  description: String
+  dueDate: DateTime
+
+  """Relay global ID for refetching via the node query"""
+  globalId: ID!
+
+  """Globally unique identifier for refetching via node query"""
+  id: ID!
+  isCompleted: Boolean!
+  parentTask: Int
+  priority: String
+  status: String
+  subtasks: [Subtask!]
+  tags: String
+  title: String!
+  updatedAt: DateTime
+  updatedById: Int
+}
+
+type TaskConnection {
+  edges: [TaskEdge!]!
+  pageInfo: PageInfo!
+  totalCount: Float!
+}
+
+type TaskEdge {
+  cursor: String!
+  node: Task!
+}
+
+input TaskOrderByInput {
+  createdAt: SortOrder
+  dueDate: SortOrder
+  id: SortOrder
+  priority: SortOrder
+  status: SortOrder
+  title: SortOrder
+  updatedAt: SortOrder
+}
+
+input TaskWhereInput {
+  assignedToId: Int
+  id: Int
+  isCompleted: Boolean
+  priority: String
+  search: String
+  status: String
+  title: String
+}
+
+type Ticket {
+  assignedToId: Int
+  attachments: [TicketAttachment!]
+  category: TicketCategory
+  categoryId: Int
+  closedAt: DateTime
+  closedById: Int
+  comments: [TicketComment!]
+  createdAt: DateTime!
+  departmentId: Int
+  description: String
+  dueDate: DateTime
+  id: ID!
+  metadata: JSON
+  organizationId: Int!
+  priority: TicketPriority!
+  reportedById: Int!
+  resolvedAt: DateTime
+  resolvedById: Int
+  status: TicketStatus!
+  tags: String
+  ticketNumber: String!
+  title: String!
+  type: TicketType!
+  updatedAt: DateTime
+}
+
+type TicketAttachment {
+  filename: String!
+  id: ID!
+  mimeType: String!
+  originalName: String!
+  s3Bucket: String
+  s3Key: String
+  size: Int!
+  ticketId: Int!
+  uploadedAt: DateTime!
+  uploadedById: Int!
+  url: String!
+}
+
+type TicketCategory {
+  color: String
+  createdAt: DateTime!
+  description: String
+  icon: String
+  id: ID!
+  isActive: Boolean!
+  name: String!
+  organizationId: Int!
+  updatedAt: DateTime
+}
+
+type TicketComment {
+  authorId: Int!
+  content: String!
+  createdAt: DateTime!
+  id: ID!
+  isDeleted: Boolean!
+  isInternal: Boolean!
+  metadata: JSON
+  ticketId: Int!
+  updatedAt: DateTime
+}
+
+input TicketFilterInput {
+  assignedToId: Int
+  categoryId: Int
+  departmentId: Int
+  priority: TicketPriority
+  reportedById: Int
+  status: TicketStatus
+  type: TicketType
+}
+
+"""Priority levels for tickets"""
+enum TicketPriority {
+  CRITICAL
+  HIGH
+  LOW
+  MEDIUM
+  URGENT
+}
+
+type TicketStatsResponse {
+  closed: Int!
+  critical: Int!
+  highPriority: Int!
+  inProgress: Int!
+  open: Int!
+  overdue: Int!
+  resolved: Int!
+  total: Int!
+}
+
+"""Status of a ticket"""
+enum TicketStatus {
+  CANCELLED
+  CLOSED
+  IN_PROGRESS
+  OPEN
+  PENDING
+  REOPENED
+  RESOLVED
+}
+
+"""Type of ticket"""
+enum TicketType {
+  BUG
+  FEATURE_REQUEST
+  INCIDENT
+  OTHER
+  QUESTION
+  SUPPORT
+  TASK
+}
+
+type TicketsResponse {
+  skip: Int
+  take: Int
+  tickets: [Ticket!]!
+  total: Int!
+}
+
+type TimeSlot {
+  endTime: String!
+  isAvailable: Boolean!
+  startTime: String!
+}
+
+type TokenStatsResponse {
+  activeTokens: Int!
+  expiredTokens: Int!
+  revokedTokens: Int!
+  totalRequests: Int!
+}
+
+type Topic {
+  bookId: Int!
+  childTopics: [Topic!]
+  createdAt: DateTime!
+  createdById: Int!
+  description: String
+
+  """Relay global ID for refetching via the node query"""
+  globalId: ID!
+  icon: String
+  id: Int!
+  isArchived: Boolean!
+  metadata: JSON
+  order: Int!
+  pages: [Page!]
+  parentTopicId: Int
+  slug: String!
+  title: String!
+  updatedAt: DateTime
+  updatedById: Int
+}
+
+type TopicConnection {
+  """List of edges containing nodes and cursors"""
+  edges: [TopicEdge!]!
+
+  """Pagination information"""
+  pageInfo: PageInfo!
+
+  """Total count of items available"""
+  totalCount: Int!
+}
+
+type TopicEdge {
+  """Cursor for this specific item"""
+  cursor: String!
+
+  """The actual item"""
+  node: Topic!
+}
+
+input TopicOrderByInput {
+  createdAt: SortOrder
+  order: SortOrder
+  title: SortOrder
+  updatedAt: SortOrder
+}
+
+input TopicWhereInput {
+  bookId: Int
+  isArchived: Boolean
+  search: String
+  slug: String
+  title: String
+}
+
+type Transaction implements Node {
+  accountId: Int
+  amount: Float!
+  book_code: String!
+
+  """Relay global ID for refetching via the node query"""
+  globalId: ID!
+
+  """Globally unique identifier for refetching via node query"""
+  id: ID!
+  is_credit: Boolean!
+
+  """Transaction items for this transaction with Relay pagination"""
+  items(after: String, before: String, first: Float, last: Float, orderBy: TransactionItemOrderByInput, where: TransactionItemWhereInput): TransactionItemConnection!
+  remarks: String
+  transactionTypeId: Int
+  transaction_date: DateTime!
+  voucher_number: String
+}
+
+type TransactionConnection {
+  """List of transaction edges containing nodes and cursors"""
+  edges: [TransactionEdge!]!
+
+  """Pagination information"""
+  pageInfo: PageInfo!
+
+  """Total count of transactions available"""
+  totalCount: Int!
+}
+
+type TransactionEdge {
+  """Cursor for this specific transaction"""
+  cursor: String!
+
+  """The actual transaction"""
+  node: Transaction!
+}
+
+type TransactionItem implements Node {
+  amount: Float
+
+  """Relay global ID for refetching via the node query"""
+  globalId: ID!
+
+  """Globally unique identifier for refetching via node query"""
+  id: ID!
+  item_description: String
+  quantity: Float
+  rate: Float
+  transactionId: Int
+}
+
+type TransactionItemConnection {
+  """List of transaction item edges containing nodes and cursors"""
+  edges: [TransactionItemEdge!]!
+
+  """Pagination information"""
+  pageInfo: PageInfo!
+
+  """Total count of transaction items available"""
+  totalCount: Int!
+}
+
+type TransactionItemEdge {
+  """Cursor for this specific transaction item"""
+  cursor: String!
+
+  """The actual transaction item"""
+  node: TransactionItem!
+}
+
+input TransactionItemOrderByInput {
+  amount: SortOrder
+  id: SortOrder
+  quantity: SortOrder
+}
+
+input TransactionItemWhereInput {
+  amount: Float
+  quantity: Float
+  transactionId: Int
+}
+
+input TransactionOrderByInput {
+  amount: SortOrder
+  id: SortOrder
+  transaction_date: SortOrder
+}
+
+type TransactionType implements Node {
+  code: String!
+  description: String
+
+  """Relay global ID for refetching via the node query"""
+  globalId: ID!
+
+  """Globally unique identifier for refetching via node query"""
+  id: ID!
+  name: String!
+}
+
+type TransactionTypeConnection {
+  """List of transaction type edges containing nodes and cursors"""
+  edges: [TransactionTypeEdge!]!
+
+  """Pagination information"""
+  pageInfo: PageInfo!
+
+  """Total count of transaction types available"""
+  totalCount: Int!
+}
+
+type TransactionTypeEdge {
+  """Cursor for this specific transaction type"""
+  cursor: String!
+
+  """The actual transaction type"""
+  node: TransactionType!
+}
+
+input TransactionTypeOrderByInput {
+  code: SortOrder
+  id: SortOrder
+  name: SortOrder
+}
+
+input TransactionTypeWhereInput {
+  code: String
+  name: String
+}
+
+input TransactionWhereInput {
+  accountId: Int
+  amount: Float
+  is_credit: Boolean
+  transactionTypeId: Int
+  transaction_date: DateTime
+}
+
+type TypingIndicator {
+  chatId: Int!
+  isTyping: Boolean!
+  user: ChatUser
+  userId: Int!
+}
+
+input UpdateAccountGroupInput {
+  category: String
+  code: String
+  id: Int!
+  name: String
+}
+
+input UpdateAppointmentStatusInput {
+  appointmentId: Int!
+  status: String!
+}
+
+input UpdateBookInput {
+  accessLevel: String
+  coverImage: String
+  description: String
+  icon: String
+  id: Int!
+  isArchived: Boolean
+  metadata: JSON
+  settings: JSON
+  slug: String
+  title: String
+}
+
+input UpdateCartItemInput {
+  cartItemId: Int!
+  quantity: Int!
+}
+
+input UpdateCommentInput {
+  content: String!
+  id: Int!
+}
+
+input UpdateDepartmentInput {
+  code: String
+  description: String
+  id: Int!
+  isActive: Boolean
+  managerId: Int
+  name: String
+  parentDeptId: Int
+  settings: JSON
+}
+
+input UpdateInvoiceStatusInput {
+  invoiceId: Int!
+  status: String!
+}
+
+input UpdateLeadInput {
+  address: String
+  assignedTo: String
+  cityId: Int
+  countryId: Int
+  email: String
+  id: Int!
+  name: String
+  notes: String
+  phone: String
+  source: String
+  stateId: Int
+  status: String
+  zipcodeId: Int
+}
+
+input UpdateMessageInput {
+  content: JSON!
+  messageId: Int!
+}
+
+input UpdateOrderStatusInput {
+  orderId: Int!
+  status: String!
+}
+
+input UpdateOrganizationInput {
+  description: String
+  domain: String
+  isActive: Boolean
+  name: String
+  settings: JSON
+}
+
+input UpdatePageInput {
+  components: JSON
+  content: JSON
+  id: Int!
+  isPublished: Boolean
+  media: JSON
+  metadata: JSON
+  order: Int
+  parentPageId: Int
+  searchableText: String
+  slug: String
+  templateId: Int
+  title: String
+}
+
+input UpdateRoleInput {
+  description: String
+  id: Int!
+  isActive: Boolean
+  name: String
+}
+
+input UpdateScheduleInput {
+  endTime: String
+  isAvailable: Boolean
+  scheduleId: Int!
+  startTime: String
+}
+
+input UpdateServiceInput {
+  category: String
+  description: String
+  duration: Int
+  id: Int!
+  isActive: Boolean
+  name: String
+  price: Float
+}
+
+input UpdateTicketInput {
+  assignedToId: Int
+  categoryId: Int
+  departmentId: Int
+  description: String
+  dueDate: String
+  id: Int!
+  metadata: JSON
+  priority: TicketPriority
+  tags: String
+  title: String
+  type: TicketType
+}
+
+input UpdateTicketStatusInput {
+  reason: String
+  status: TicketStatus!
+  ticketId: Int!
+}
+
+input UpdateTopicInput {
+  description: String
+  icon: String
+  id: Int!
+  isArchived: Boolean
+  metadata: JSON
+  order: Int
+  parentTopicId: Int
+  slug: String
+  title: String
+}
+
+input UpdateTransactionItemInput {
+  amount: Float
+  id: Int!
+  item_description: String
+  quantity: Float
+  rate: Float
+  transactionId: Int
+}
+
+input UpdateTransactionTypeInput {
+  code: String
+  description: String
+  id: Int!
+  name: String
+}
+
+input UpdateUserRoleInput {
+  isActive: Boolean
+  isOwner: Boolean
+  organizationUserId: Int!
+  roleId: Int
+}
+
+input UpdateWebsiteComponentInput {
+  category: String
+  config: JSON
+  defaultProps: JSON
+  isPublic: Boolean
+  isReusable: Boolean
+  name: String
+  schema: JSON
+  type: String
+}
+
+input UpdateWebsiteFormInput {
+  description: String
+  fields: JSON
+  isActive: Boolean
+  name: String
+  settings: JSON
+}
+
+input UpdateWebsiteInput {
+  customDomain: String
+  description: String
+  domain: String
+  name: String
+  settings: JSON
+  theme: String
+}
+
+input UpdateWebsitePageInput {
+  content: JSON
+  customCSS: String
+  customJS: String
+  metaDescription: String
+  metaKeywords: String
+  metaTitle: String
+  order: Int
+  parentPageId: Int
+  slug: String
+  templateId: Int
+  title: String
+}
+
+type UploadUrlResponse {
+  publicUrl: String!
+  s3Bucket: String!
+  s3Key: String!
+  uploadUrl: String!
+}
+
+type User implements Node {
+  createdAt: DateTime!
+  email: String
+
+  """Globally unique identifier for refetching via node query"""
+  id: ID!
+  mobile: String
+  updatedAt: DateTime
+  username: String
+}
+
+type UserResponse {
+  email: String
+  id: Int!
+  isActive: Boolean!
+  mobile: String
+  username: String
+}
+
+type Website implements Node {
+  createdAt: DateTime!
+  customDomain: String
+  description: String
+  domain: String
+
+  """Globally unique identifier for refetching via node query"""
+  id: ID!
+  isPublished: Boolean!
+  name: String!
+  organizationId: Int!
+  s3Bucket: String
+  s3Key: String
+  settings: JSON
+  theme: String
+  updatedAt: DateTime
+}
+
+type WebsiteAsset {
+  alt: String
+  createdAt: DateTime!
+  filename: String!
+  folder: String
+  id: Int!
+  metadata: JSON
+  mimeType: String!
+  organizationId: Int!
+  originalName: String!
+  s3Bucket: String!
+  s3Key: String!
+  size: Int!
+  updatedAt: DateTime
+  url: String!
+  websiteId: Int!
+}
+
+type WebsiteComponent implements Node {
+  category: String
+  config: JSON!
+  createdAt: DateTime!
+  createdBy: User
+  createdById: Int
+  defaultProps: JSON
+  description: String
+
+  """Globally unique identifier for refetching via node query"""
+  id: ID!
+  isPublic: Boolean!
+  isReusable: Boolean!
+  name: String!
+  schema: JSON
+  type: String!
+  updatedAt: DateTime
+  websiteId: Int!
+}
+
+type WebsiteForm implements Node {
+  createdAt: DateTime!
+  createdById: Int!
+  description: String
+
+  """Form fields configuration as JSON array"""
+  fields: JSON!
+
+  """Globally unique identifier for refetching via node query"""
+  id: ID!
+  isActive: Boolean!
+  name: String!
+  organizationId: Int!
+
+  """Form settings (notifications, success message, etc.)"""
+  settings: JSON
+  submissions: [WebsiteFormSubmission!]
+  updatedAt: DateTime
+  websiteId: Int!
+}
+
+type WebsiteFormSubmission implements Node {
+  """Submitted form data"""
+  data: JSON!
+  formId: Int!
+
+  """Globally unique identifier for refetching via node query"""
+  id: ID!
+  ipAddress: String
+
+  """Additional metadata"""
+  metadata: JSON
+  submittedAt: DateTime!
+  userAgent: String
+}
+
+type WebsitePage implements Node {
+  childPages: [WebsitePage!]
+  content: JSON!
+  createdAt: DateTime!
+  customCSS: String
+  customJS: String
+
+  """Globally unique identifier for refetching via node query"""
+  id: ID!
+  isPublished: Boolean!
+  metaDescription: String
+  metaKeywords: String
+  metaTitle: String
+  order: Int!
+  parentPageId: Int
+  publishedAt: DateTime
+  slug: String!
+  templateId: Int
+  title: String!
+  updatedAt: DateTime
+  websiteId: Int!
+}
+
+type WebsitePageVersion implements Node {
+  content: JSON!
+  createdAt: DateTime!
+
+  """Globally unique identifier for refetching via node query"""
+  id: ID!
+  metadata: JSON
+  pageId: Int!
+  version: Int!
+}
+
+type Zipcode implements Node {
+  cityId: Int!
+  code: String!
+
+  """Globally unique identifier for refetching via node query"""
+  id: ID!
+}

@@ -1829,16 +1829,30 @@ var tokens2 = {
   },
   // Color tokens - semantic colors (values set in themes)
   color: {
-    // Brand colors
-    primary: "#007AFF",
-    primaryLight: "#5AC8FA",
-    primaryDark: "#0051D5",
-    secondary: "#5856D6",
-    secondaryLight: "#AF52DE",
-    secondaryDark: "#3634A3",
+    // Brand colors - Gen-Z vibrant palette
+    primary: "#FF006E",
+    // Hot pink
+    primaryLight: "#FF4D9D",
+    primaryDark: "#D1004F",
+    secondary: "#8B5CF6",
+    // Purple
+    secondaryLight: "#A78BFA",
+    secondaryDark: "#7C3AED",
     accent: "#FF9500",
     accentLight: "#FFB340",
     accentDark: "#C77700",
+    // Gradient tokens for Gen-Z aesthetics
+    gradientPink: "#FF006E",
+    gradientPurple: "#8B5CF6",
+    gradientBlue: "#3B82F6",
+    gradientOrange: "#F59E0B",
+    gradientTeal: "#14B8A6",
+    // Pastel tones for subtle backgrounds
+    pastelPink: "#FFF1F8",
+    pastelPurple: "#F5F3FF",
+    pastelBlue: "#EFF6FF",
+    pastelOrange: "#FFF7ED",
+    pastelTeal: "#F0FDFA",
     // Semantic colors
     success: "#34C759",
     successLight: "#5DD87F",
@@ -2068,13 +2082,17 @@ var monoFont = (0, import_core2.createFont)({
 
 // ../../packages/ui/src/themes.ts
 var lightTheme = {
-  // Background colors
+  // Background colors with subtle gradients
   background: "#FFFFFF",
-  backgroundStrong: "#F5F5F5",
+  backgroundStrong: "#F9FAFB",
   backgroundTransparent: "rgba(255,255,255,0.7)",
-  backgroundHover: "#F9F9F9",
-  backgroundPress: "#F0F0F0",
+  backgroundHover: "#FFF1F8",
+  backgroundPress: "#FFE4F0",
   backgroundFocus: "#E8E8E8",
+  backgroundGradientStart: "#FFF1F8",
+  backgroundGradientEnd: "#F5F3FF",
+  cardGradientStart: "#FFFFFF",
+  cardGradientEnd: "#FFF1F8",
   // Text colors
   color: "#212121",
   colorStrong: "#000000",
@@ -2092,13 +2110,19 @@ var lightTheme = {
   borderColorFocus: "#007AFF",
   borderFocus: "#007AFF",
   // Add this for Tamagui v4
-  // Semantic colors - brand
-  primary: "#007AFF",
-  primaryLight: "#5AC8FA",
-  primaryDark: "#0051D5",
-  secondary: "#5856D6",
-  secondaryLight: "#AF52DE",
-  secondaryDark: "#3634A3",
+  // Semantic colors - brand (Gen-Z vibrant palette)
+  primary: "#FF006E",
+  primaryLight: "#FF4D9D",
+  primaryDark: "#D1004F",
+  secondary: "#8B5CF6",
+  secondaryLight: "#A78BFA",
+  secondaryDark: "#7C3AED",
+  // Gradient colors
+  gradientPink: "#FF006E",
+  gradientPurple: "#8B5CF6",
+  gradientBlue: "#3B82F6",
+  gradientOrange: "#F59E0B",
+  gradientTeal: "#14B8A6",
   accent: "#FF9500",
   accentLight: "#FFB340",
   accentDark: "#C77700",
@@ -2147,13 +2171,17 @@ var lightTheme = {
   purple9: "#D180F5"
 };
 var darkTheme = {
-  // Background colors
-  background: "#121212",
-  backgroundStrong: "#1E1E1E",
-  backgroundTransparent: "rgba(18,18,18,0.7)",
+  // Background colors with gradient support
+  background: "#0A0A0A",
+  backgroundStrong: "#1A1A1A",
+  backgroundTransparent: "rgba(10,10,10,0.7)",
   backgroundHover: "#1C1C1C",
   backgroundPress: "#252525",
   backgroundFocus: "#2C2C2C",
+  backgroundGradientStart: "#1A0A1F",
+  backgroundGradientEnd: "#0A0A0A",
+  cardGradientStart: "#1A1A1A",
+  cardGradientEnd: "#1A0A1F",
   // Text colors
   color: "#E5E5E5",
   // color11: Use 'color' instead for Tamagui v4
@@ -2169,13 +2197,19 @@ var darkTheme = {
   borderColorFocus: "#5AC8FA",
   borderFocus: "#5AC8FA",
   // Add this for Tamagui v4
-  // Semantic colors - brand (adjusted for dark mode)
-  primary: "#5AC8FA",
-  primaryLight: "#8CDCFF",
-  primaryDark: "#0099CC",
-  secondary: "#AF52DE",
-  secondaryLight: "#D180F5",
-  secondaryDark: "#8E3FB8",
+  // Semantic colors - brand (Gen-Z palette for dark mode)
+  primary: "#FF4D9D",
+  primaryLight: "#FF80B8",
+  primaryDark: "#FF006E",
+  secondary: "#A78BFA",
+  secondaryLight: "#C4B5FD",
+  secondaryDark: "#8B5CF6",
+  // Gradient colors (darker variants)
+  gradientPink: "#FF4D9D",
+  gradientPurple: "#A78BFA",
+  gradientBlue: "#60A5FA",
+  gradientOrange: "#FBBF24",
+  gradientTeal: "#2DD4BF",
   accent: "#FFB340",
   accentLight: "#FFD166",
   accentDark: "#FF9500",

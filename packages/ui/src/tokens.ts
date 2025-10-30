@@ -96,18 +96,32 @@ export const tokens = {
 
   // Color tokens - semantic colors (values set in themes)
   color: {
-    // Brand colors
-    primary: '#007AFF',
-    primaryLight: '#5AC8FA',
-    primaryDark: '#0051D5',
+    // Brand colors - Gen-Z vibrant palette
+    primary: '#FF006E', // Hot pink
+    primaryLight: '#FF4D9D',
+    primaryDark: '#D1004F',
     
-    secondary: '#5856D6',
-    secondaryLight: '#AF52DE',
-    secondaryDark: '#3634A3',
+    secondary: '#8B5CF6', // Purple
+    secondaryLight: '#A78BFA',
+    secondaryDark: '#7C3AED',
     
     accent: '#FF9500',
     accentLight: '#FFB340',
     accentDark: '#C77700',
+    
+    // Gradient tokens for Gen-Z aesthetics
+    gradientPink: '#FF006E',
+    gradientPurple: '#8B5CF6',
+    gradientBlue: '#3B82F6',
+    gradientOrange: '#F59E0B',
+    gradientTeal: '#14B8A6',
+    
+    // Pastel tones for subtle backgrounds
+    pastelPink: '#FFF1F8',
+    pastelPurple: '#F5F3FF',
+    pastelBlue: '#EFF6FF',
+    pastelOrange: '#FFF7ED',
+    pastelTeal: '#F0FDFA',
 
     // Semantic colors
     success: '#34C759',
