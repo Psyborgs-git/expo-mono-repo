@@ -282,6 +282,7 @@ See [CONTRIBUTING.md](./CONTRIBUTING.md) for detailed development guidelines inc
 
 - **[Quick Start](./QUICK_START.md)** - Get up and running in 5 minutes
 - **[Contributing Guide](./CONTRIBUTING.md)** - Development workflow and best practices
+- **[Pre-Built Flows](./FLOWS.md)** - Ready-to-use auth, chat, and UI flows
 - **[Theming Guide](./THEMING_GUIDE.md)** - Complete theming and design system documentation
 - **[Network Layer API](./NETWORK_LAYER_API.md)** - GraphQL, authentication, and caching guide
 - **[Component Library](./COMPONENT_LIBRARY.md)** - All available components and usage examples

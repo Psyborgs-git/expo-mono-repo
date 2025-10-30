@@ -10,9 +10,6 @@ export type { FormFieldProps } from './FormField/FormField';
 export { SearchBar } from './SearchBar/SearchBar';
 export type { SearchBarProps } from './SearchBar/SearchBar';
 
-export { DiamondCard } from './DiamondCard/DiamondCard';
-export type { DiamondCardProps } from './DiamondCard/DiamondCard';
-
 export { MessageBubble } from './MessageBubble/MessageBubble';
 export type { MessageBubbleProps, MessageBubbleVariant } from './MessageBubble/MessageBubble';
 
