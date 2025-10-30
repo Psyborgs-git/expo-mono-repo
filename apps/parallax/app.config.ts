@@ -18,6 +18,13 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   ios: {
     supportsTablet: true,
     bundleIdentifier: 'com.bdt.parallax',
+    infoPlist: {
+      NSCameraUsageDescription: 'Parallax needs access to your camera to take profile photos and videos.',
+      NSMicrophoneUsageDescription: 'Parallax needs access to your microphone for video calls.',
+      NSPhotoLibraryUsageDescription: 'Parallax needs access to your photo library to upload profile pictures.',
+      NSLocationWhenInUseUsageDescription: 'Parallax uses your location to find matches nearby.',
+      NSContactsUsageDescription: 'Parallax can access your contacts to help you connect with friends.',
+    },
   },
   android: {
     adaptiveIcon: {
@@ -25,10 +32,32 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
       backgroundColor: '#ffffff',
     },
     package: 'com.bdt.parallax',
+    permissions: [
+      'CAMERA',
+      'RECORD_AUDIO',
+      'ACCESS_FINE_LOCATION',
+      'ACCESS_COARSE_LOCATION',
+      'READ_CONTACTS',
+      'READ_EXTERNAL_STORAGE',
+      'WRITE_EXTERNAL_STORAGE',
+      'READ_MEDIA_IMAGES',
+      'READ_MEDIA_VIDEO',
+    ],
   },
   web: {
     bundler: 'metro',
     favicon: './assets/favicon.png',
   },
-  plugins: [],
+  plugins: [
+    'expo-router',
+    [
+      'react-native-vision-camera',
+      {
+        cameraPermissionText: 'Parallax needs access to your camera to take profile photos and videos.',
+        enableMicrophonePermission: true,
+        microphonePermissionText: 'Parallax needs access to your microphone for video calls.',
+      },
+    ],
+    '@shopify/react-native-skia',
+  ],
 });
