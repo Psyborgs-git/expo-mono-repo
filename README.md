@@ -6,7 +6,9 @@ A production-ready Expo monorepo featuring shared UI components, theming, GraphQ
 
 ## 🚀 Features
 
+- ✅ **App Factory** - Automated app and package creation with `create-app` and `create-package`
 - ✅ **Monorepo Structure** - pnpm workspaces with multiple apps and shared packages
+- ✅ **Pre-Built Flows** - Login, Signup, OTP verification, Chat, and more out of the box
 - ✅ **Tamagui UI Library** - Performant, themeable UI components for React Native and Web
 - ✅ **Dark Mode** - Automatic light/dark theme switching
 - ✅ **GraphQL Network Layer** - Apollo Client with auth, caching, and error handling
@@ -16,6 +18,7 @@ A production-ready Expo monorepo featuring shared UI components, theming, GraphQ
 - ✅ **TypeScript** - Full type safety across all packages
 - ✅ **Shared Components** - Reusable component library across all apps
 - ✅ **Design System** - Comprehensive tokens, themes, and styling standards
+- ✅ **Expo Modules** - Support for creating native modules with minimal configuration
 
 ## 📁 Project Structure
 
@@ -249,88 +252,40 @@ Third application in the monorepo.
 
 **Features:**
 
-## 🔧 Development
-
-### Adding a New Component
-
-1. Create component in `packages/components/src/`:
-   ```tsx
-   // packages/components/src/Badge.tsx
-   import { styled } from 'tamagui';
-   import { XStack } from 'tamagui';
-
-   export const Badge = styled(XStack, {
-     backgroundColor: '$primary',
-     paddingHorizontal: '$2',
-     paddingVertical: '$1',
-     borderRadius: '$2',
-   });
-   ```
-
-2. Export in `packages/components/src/index.ts`:
-   ```ts
-   export { Badge } from './Badge';
-   ```
-
-3. Use in any app:
-   ```tsx
-   import { Badge } from '@bdt/components';
-   ```
-
-### Adding App Dependencies
-
-```bash
-# Add to specific app
- pnpm --filter @bdt/carat-central add package-name
-
-# Add to all apps
-pnpm add -w package-name
-```
-
-### Running Tests
-
-```bash
-# Run all tests
-pnpm test
-
-# Run tests for specific package
- pnpm --filter @bdt/components test
-```
-
-## 📱 Building for Production
-
-### iOS
-
-```bash
- pnpm --filter @bdt/carat-central ios --configuration Release
-```
-
-### Android
-
-```bash
- pnpm --filter @bdt/carat-central android --variant release
-```
-
-### Web
-
-```bash
- pnpm --filter @bdt/carat-central build:web
-```
-
 ## 🧩 Creating a New App
 
-*Coming soon: Automated app scaffolding script*
+Use the automated CLI tool:
 
-Manually:
+```bash
+pnpm create-app
+```
 
-1. Copy an existing app directory
-2. Update `package.json` name and details
-3. Update `app.config.ts` with app-specific configuration
-4. Add to root `package.json` scripts
-5. Run `pnpm install`
+Or directly:
+
+```bash
+tsx tools/src/create-app.ts
+```
+
+Choose from templates:
+- **Basic** - Simple tabs navigation
+- **Auth Flow** - Login, signup, OTP verification
+- **Chat** - Real-time messaging interface
+- **Dashboard** - Data-heavy analytics app
+
+## 🔧 Development
+
+See [CONTRIBUTING.md](./CONTRIBUTING.md) for detailed development guidelines including:
+- Creating components
+- Using pre-built flows (Login, Signup, OTP, Chat)
+- Theming and customization
+- Testing and linting
+- Pull request process
 
 ## 📚 Documentation
 
+- **[Quick Start](./QUICK_START.md)** - Get up and running in 5 minutes
+- **[Contributing Guide](./CONTRIBUTING.md)** - Development workflow and best practices
+- **[Pre-Built Flows](./FLOWS.md)** - Ready-to-use auth, chat, and UI flows
 - **[Theming Guide](./THEMING_GUIDE.md)** - Complete theming and design system documentation
 - **[Network Layer API](./NETWORK_LAYER_API.md)** - GraphQL, authentication, and caching guide
 - **[Component Library](./COMPONENT_LIBRARY.md)** - All available components and usage examples

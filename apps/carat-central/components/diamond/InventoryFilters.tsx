@@ -17,7 +17,7 @@ import {
   Search,
   SlidersHorizontal,
 } from '@tamagui/lucide-icons';
-import { SearchBar } from '../molecules/SearchBar';
+import { SearchBar } from '@bdt/components';
 import Select from '../ui/Select';
 import NumberInput from '../ui/NumberInput';
 import { DiamondFilters, DiamondSortOption } from '../../hooks/useDiamonds';

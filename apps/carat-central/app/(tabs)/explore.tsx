@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import { View, YStack, H2, Paragraph } from 'tamagui';
 import { DiamondList } from '../../components/organisms/DiamondList';
-import { SearchBar } from '../../components/molecules/SearchBar';
+import { SearchBar } from '@bdt/components';
 
 // Local diamond type used by the UI components
 type DiamondType = {

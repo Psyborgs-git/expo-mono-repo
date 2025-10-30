@@ -5,9 +5,6 @@
  * They form distinct sections of an interface.
  */
 
-export { DiamondList } from './DiamondList/DiamondList';
-export type { DiamondListProps } from './DiamondList/DiamondList';
-
 export { ChatThread } from './ChatThread/ChatThread';
 export type { ChatThreadProps, ChatMessage } from './ChatThread/ChatThread';
 
