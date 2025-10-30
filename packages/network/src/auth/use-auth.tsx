@@ -20,8 +20,11 @@ export function useAuth(authManager: AuthManager) {
   }, [authManager])
 
   const login = useCallback(
-    async (countryCode: string, phoneNumber: string) => {
-      return authManager.loginWithPhoneNumber(countryCode, phoneNumber)
+    async (email: string, password: string) => {
+      // This should be implemented based on your auth API
+      // For now, returning a placeholder
+      console.warn('login method needs to be implemented');
+      return false;
     },
     [authManager]
   )

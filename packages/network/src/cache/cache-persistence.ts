@@ -28,7 +28,7 @@ export class CachePersistence {
     try {
       // Set up cache persistence
       this.persistor = await persistCache({
-        cache: this.cache,
+        cache: this.cache as any,
         storage: this.getStorageWrapper(),
         maxSize: this.config.maxSize,
         debounce: this.config.debounce,

@@ -5,6 +5,7 @@ import {
   from,
   split,
   type TypePolicies,
+  Observable,
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import { onError } from '@apollo/client/link/error';
@@ -77,32 +78,46 @@ export function createApolloClient(config: ApolloClientConfig) {
   });
 
   // Enhanced Error Link - handles GraphQL error codes and token refresh
-  const errorLink = onError(({ graphQLErrors, networkError, operation, forward }) => {
+  const errorLink = onError((errorResponse: any) => {
+    const { graphQLErrors, operation, forward } = errorResponse;
     if (graphQLErrors) {
       for (const err of graphQLErrors) {
         const errorCode = err.extensions?.code;
         
         // Handle authentication errors
         if (errorCode === 'UNAUTHENTICATED' && authManager) {
-          return authManager.refreshTokens().then(async (success: boolean) => {
-            if (success) {
-              // Retry the failed request with new tokens
-              const tokens = await authManager.getTokens();
-              const orgId = getOrgId ? getOrgId() : undefined;
-              const oldHeaders = operation.getContext().headers;
+          // Return Observable for retry
+          return new Observable((observer) => {
+            authManager.refreshTokens().then(async (success: boolean) => {
+              if (success) {
+                // Retry the failed request with new tokens
+                const tokens = await authManager.getTokens();
+                const orgId = getOrgId ? getOrgId() : undefined;
+                const oldHeaders = operation.getContext().headers;
               
-              operation.setContext({
-                headers: {
-                  ...oldHeaders,
-                  authorization: `Bearer ${tokens?.accessToken}`,
-                  ...(orgId && { 'org-id': orgId }),
-                },
-              });
-              return forward(operation);
-            }
-            // If refresh failed, clear auth and don't retry
-            authManager.clearAuth();
-            return;
+                operation.setContext({
+                  headers: {
+                    ...oldHeaders,
+                    authorization: `Bearer ${tokens?.accessToken}`,
+                    ...(orgId && { 'org-id': orgId }),
+                  },
+                });
+                
+                const subscriber = {
+                  next: observer.next.bind(observer),
+                  error: observer.error.bind(observer),
+                  complete: observer.complete.bind(observer),
+                };
+                
+                forward(operation).subscribe(subscriber);
+              } else {
+                // If refresh failed, clear auth and complete
+                authManager.clearAuth();
+                observer.complete();
+              }
+            }).catch((error) => {
+              observer.error(error);
+            });
           });
         }
         
@@ -123,12 +138,12 @@ export function createApolloClient(config: ApolloClientConfig) {
       }
     }
 
-    if (networkError) {
-      console.error(`[Network error]: ${networkError}`);
+    if (errorResponse.networkError) {
+      console.error(`[Network error]: ${errorResponse.networkError}`);
       
       // Handle specific network error codes
-      if ('statusCode' in networkError) {
-        switch (networkError.statusCode) {
+      if ('statusCode' in errorResponse.networkError) {
+        switch (errorResponse.networkError.statusCode) {
           case 401:
             console.warn('[Network]: Unauthorized - token may be expired');
             break;
@@ -344,7 +359,7 @@ async function setupCachePersistence(cache: InMemoryCache, storage: any) {
     const { persistCache } = await import('apollo3-cache-persist');
     
     await persistCache({
-      cache,
+      cache: cache as any,
       storage,
       maxSize: 1024 * 1024, // 1MB
       debounce: 1000, // 1 second
