@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { FlatList, Dimensions } from 'react-native';
+import { Dimensions } from 'react-native';
 import { YStack, XStack, Text, Image, Card, Button } from 'tamagui';
 import { MapPin, Heart, X } from '@tamagui/lucide-icons';
 import { api } from '../../src/lib/api';

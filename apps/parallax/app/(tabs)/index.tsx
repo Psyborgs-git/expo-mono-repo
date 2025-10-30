@@ -82,7 +82,7 @@ export default function ChatsScreen() {
               {item.unreadCount > 0 && (
                 <Circle
                   size={20}
-                  backgroundColor="$pink10"
+                  backgroundColor="pink"
                   marginLeft="$2"
                 >
                   <Text color="white" fontSize="$1" fontWeight="bold">

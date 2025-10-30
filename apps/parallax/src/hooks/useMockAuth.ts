@@ -20,7 +20,7 @@ export function useMockAuth() {
     isAuthenticated: false,
   });
 
-  const login = async (email: string, password: string): Promise<boolean> => {
+  const login = async (_email: string, _password: string): Promise<boolean> => {
     setAuthState((prev) => ({ ...prev, isLoading: true }));
     
     try {
@@ -80,7 +80,7 @@ export function useMockAuth() {
           isLoading: false,
           isAuthenticated: true,
         });
-      } catch (error) {
+      } catch (_error) {
         setAuthState({
           user: null,
           isLoading: false,

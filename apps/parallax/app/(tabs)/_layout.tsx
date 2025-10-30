@@ -19,8 +19,8 @@ export default function TabsLayout() {
         name="index"
         options={{
           title: 'Chats',
-          tabBarIcon: ({ color, size }) => (
-            <MessageCircle size={size} color={color} />
+          tabBarIcon: ({ color }) => (
+            <MessageCircle size={24} color={color} />
           ),
         }}
       />
@@ -28,8 +28,8 @@ export default function TabsLayout() {
         name="explore"
         options={{
           title: 'Explore',
-          tabBarIcon: ({ color, size }) => (
-            <Compass size={size} color={color} />
+          tabBarIcon: ({ color }) => (
+            <Compass size={24} color={color} />
           ),
         }}
       />
@@ -37,11 +37,12 @@ export default function TabsLayout() {
         name="profile"
         options={{
           title: 'Profile',
-          tabBarIcon: ({ color, size }) => (
-            <User size={size} color={color} />
+          tabBarIcon: ({ color }) => (
+            <User size={24} color={color} />
           ),
         }}
       />
     </Tabs>
   );
 }
+

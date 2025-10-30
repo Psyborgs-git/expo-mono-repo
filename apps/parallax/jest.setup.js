@@ -1,5 +1,4 @@
 // Jest setup file
-import '@testing-library/jest-native/extend-expect';
 
 // Mock expo modules
 jest.mock('expo-haptics', () => ({
@@ -41,7 +40,7 @@ jest.mock('@tamagui/lucide-icons', () => ({
   MapPin: 'MapPin',
   Heart: 'Heart',
   X: 'X',
-  Edit: 'Edit',
+  Edit3: 'Edit3',
   Settings: 'Settings',
   LogOut: 'LogOut',
   Send: 'Send',
@@ -53,3 +52,4 @@ jest.mock('@tamagui/lucide-icons', () => ({
   MicOff: 'MicOff',
   PhoneOff: 'PhoneOff',
 }));
+

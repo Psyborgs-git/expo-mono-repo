@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { FlatList, KeyboardAvoidingView, Platform } from 'react-native';
 import { YStack, XStack, Text, Input, Button, Avatar } from 'tamagui';
-import { useLocalSearchParams, useRouter, Stack } from 'expo-router';
+import { useLocalSearchParams, Stack } from 'expo-router';
 import { Send } from '@tamagui/lucide-icons';
 import { api } from '../../src/lib/api';
 import { Message, Chat } from '../../src/lib/types';
@@ -12,7 +12,6 @@ export default function ChatDetailsScreen() {
   const [newMessage, setNewMessage] = useState('');
   const [chat, setChat] = useState<Chat | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-  const router = useRouter();
 
   const loadMessages = async () => {
     try {
