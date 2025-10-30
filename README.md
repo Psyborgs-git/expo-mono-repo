@@ -6,7 +6,9 @@ A production-ready Expo monorepo featuring shared UI components, theming, GraphQ
 
 ## 🚀 Features
 
+- ✅ **App Factory** - Automated app and package creation with `create-app` and `create-package`
 - ✅ **Monorepo Structure** - pnpm workspaces with multiple apps and shared packages
+- ✅ **Pre-Built Flows** - Login, Signup, OTP verification, Chat, and more out of the box
 - ✅ **Tamagui UI Library** - Performant, themeable UI components for React Native and Web
 - ✅ **Dark Mode** - Automatic light/dark theme switching
 - ✅ **GraphQL Network Layer** - Apollo Client with auth, caching, and error handling
@@ -16,6 +18,7 @@ A production-ready Expo monorepo featuring shared UI components, theming, GraphQ
 - ✅ **TypeScript** - Full type safety across all packages
 - ✅ **Shared Components** - Reusable component library across all apps
 - ✅ **Design System** - Comprehensive tokens, themes, and styling standards
+- ✅ **Expo Modules** - Support for creating native modules with minimal configuration
 
 ## 📁 Project Structure
 
