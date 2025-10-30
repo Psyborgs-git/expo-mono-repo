@@ -57,7 +57,6 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
         enableMicrophonePermission: true,
         microphonePermissionText: 'Parallax needs access to your microphone for video calls.',
       },
-    ],
-    '@shopify/react-native-skia',
+    ]
   ],
 });
