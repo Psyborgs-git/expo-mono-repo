@@ -1,5 +1,3 @@
-import { NativeModules } from 'react-native';
-
 // Mock the native module
 const mockNativeModule = {
   initialize: jest.fn().mockResolvedValue(undefined),
