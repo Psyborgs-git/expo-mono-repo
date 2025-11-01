@@ -1,0 +1,297 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Mutation {
+  addParallaxPhoto(order: Float!, url: String!): ParallaxPhoto!
+  cancelSubscription: Boolean!
+  createParallaxProfile(input: ParallaxCreateProfileInput!): ParallaxProfile!
+  deleteParallaxPhoto(photoId: String!): Boolean!
+  parallaxLogout(token: String!): ParallaxLogoutResponse!
+  parallaxLogoutAll: ParallaxLogoutResponse!
+  parallaxRefreshToken(refreshToken: String!): ParallaxRefreshTokenResponse!
+  parallaxRequestEmailOTP(email: String!): ParallaxOTPResponse!
+  parallaxRequestMobileOTP(countryCode: String!, mobile: String!): ParallaxOTPResponse!
+  parallaxSignIn(email: String!, password: String!): ParallaxAuthPayload!
+  parallaxSignUp(email: String!, password: String!): ParallaxAuthPayload!
+  parallaxVerifyEmailOTP(email: String!, otp: String!): ParallaxAuthPayload!
+  parallaxVerifyMobileOTP(countryCode: String!, mobile: String!, otp: String!): ParallaxAuthPayload!
+  respondToParallaxMatch(matchId: String!, response: Boolean!): ParallaxMatch!
+  sendParallaxMessage(chatId: String!, text: String!): ParallaxMessage!
+  submitParallaxOnboardingAnswers(answers: [ParallaxOnboardingAnswerInput!]!): ParallaxUser!
+  updateParallaxPreference(input: ParallaxCreatePreferenceInput!): ParallaxPreference!
+  updateParallaxProfile(input: ParallaxUpdateProfileInput!): ParallaxProfile!
+  upgradeSubscription(input: UpgradeSubscriptionInput!): Boolean!
+}
+
+type Organization {
+  createdAt: DateTime!
+  createdById: Int!
+  description: String
+  domain: String
+
+  """Relay global ID for refetching via node query"""
+  globalId: ID!
+  id: Int!
+  isActive: Boolean!
+  members: [OrganizationUser!]
+  name: String!
+  roles: [OrganizationRole!]
+  updatedAt: DateTime
+}
+
+type OrganizationEdge {
+  """Cursor for this specific item"""
+  cursor: String!
+
+  """The actual item"""
+  node: Organization!
+}
+
+type OrganizationMember {
+  email: String
+  id: Int!
+  isActive: Boolean!
+  isOwner: Boolean!
+  joinedAt: DateTime!
+  organizationId: Int!
+  roleDescription: String
+  roleId: Int
+  roleName: String
+  userId: Int!
+  username: String
+}
+
+type OrganizationRole {
+  createdAt: DateTime!
+  description: String
+  id: Int!
+  isActive: Boolean!
+  isDefault: Boolean!
+  name: String!
+  organizationId: Int!
+  updatedAt: DateTime
+}
+
+type OrganizationUser {
+  id: Int!
+  isActive: Boolean!
+  isOwner: Boolean!
+  joinedAt: DateTime!
+  organizationId: Int!
+  userId: Int!
+}
+
+type PageInfo {
+  """Cursor pointing to the last item in the current page"""
+  endCursor: String
+
+  """Whether there are more items after the current cursor"""
+  hasNextPage: Boolean!
+
+  """Whether there are more items before the current cursor"""
+  hasPreviousPage: Boolean!
+
+  """Cursor pointing to the first item in the current page"""
+  startCursor: String
+}
+
+type ParallaxAgent {
+  createdAt: DateTime!
+  id: ID!
+  personalityProfile: String!
+  personalityVector: String
+  updatedAt: DateTime!
+}
+
+type ParallaxAuthPayload {
+  accessToken: String!
+  users: ParallaxUser!
+}
+
+type ParallaxChat {
+  createdAt: DateTime!
+  id: ID!
+  messages: [ParallaxMessage!]
+}
+
+input ParallaxCreatePreferenceInput {
+  interestedInGender: [String!]!
+  maxAge: Float!
+  minAge: Float!
+}
+
+input ParallaxCreateProfileInput {
+  bio: String
+  birthDate: DateTime!
+  firstName: String!
+  gender: String!
+  occupation: String
+}
+
+type ParallaxInteraction {
+  createdAt: DateTime!
+  evaluationBreakdown: String!
+  evaluationScore: Float!
+  id: ID!
+  matchRationale: String!
+  simulatedTranscript: String!
+}
+
+type ParallaxLogoutResponse {
+  message: String!
+}
+
+type ParallaxMatch {
+  chat: ParallaxChat
+  createdAt: DateTime!
+  id: ID!
+  interaction: ParallaxInteraction
+  matchRationale: String
+  status: ParallaxMatchStatus!
+  updatedAt: DateTime!
+  userA: ParallaxUser!
+  userAResponse: Boolean
+  userB: ParallaxUser!
+  userBResponse: Boolean
+}
+
+enum ParallaxMatchStatus {
+  ACCEPTED
+  EXPIRED
+  PENDING
+  REJECTED
+}
+
+type ParallaxMessage {
+  createdAt: DateTime!
+  id: ID!
+  sender: ParallaxUser!
+  text: String!
+}
+
+type ParallaxOTPResponse {
+  message: String!
+  otpId: String!
+}
+
+input ParallaxOnboardingAnswerInput {
+  answerText: String!
+  questionKey: String!
+}
+
+enum ParallaxOnboardingState {
+  ACTIVE
+  COMPLETING
+  CREATING_AGENT
+  INACTIVE
+}
+
+type ParallaxPhoto {
+  createdAt: DateTime!
+  id: ID!
+  order: Float!
+  url: String!
+}
+
+type ParallaxPreference {
+  id: ID!
+  interestedInGender: [String!]!
+  maxAge: Float!
+  minAge: Float!
+  updatedAt: DateTime!
+}
+
+type ParallaxProfile {
+  bio: String
+  birthDate: DateTime!
+  createdAt: DateTime!
+  firstName: String!
+  gender: String!
+  id: ID!
+  occupation: String
+  photos: [ParallaxPhoto!]!
+  updatedAt: DateTime!
+}
+
+type ParallaxRefreshTokenResponse {
+  accessToken: String!
+  refreshToken: String!
+}
+
+input ParallaxUpdateProfileInput {
+  bio: String
+  birthDate: DateTime
+  firstName: String
+  gender: String
+  occupation: String
+}
+
+type ParallaxUser {
+  agent: ParallaxAgent
+  createdAt: DateTime!
+  email: String!
+  id: ID!
+  onboardingState: ParallaxOnboardingState!
+  preference: ParallaxPreference
+  profile: ParallaxProfile
+  updatedAt: DateTime!
+}
+
+type Query {
+  getCurrentParallaxMatch: ParallaxMatch
+  getMessages(chatId: String!): [ParallaxMessage!]!
+  getParallaxChat(chatId: String!): ParallaxChat!
+  getParallaxMatches(status: String): [ParallaxMatch!]!
+  getParallaxPreference: ParallaxPreference
+  getParallaxProfile: ParallaxProfile
+  getUserChats: [ParallaxChat!]!
+  mySubscription: SubscriptionInfoType!
+  parallaxMe: ParallaxUser!
+}
+
+type Subscription {
+  parallaxMessageSent(chatId: String!): ParallaxMessage!
+}
+
+type SubscriptionInfoType {
+  endsAt: DateTime
+  limits: SubscriptionLimitsType!
+  status: SubscriptionStatus!
+  tier: SubscriptionTier!
+  usage: SubscriptionUsageType!
+}
+
+type SubscriptionLimitsType {
+  canSeeWhoLikedYou: Boolean!
+  matchesPerWeek: Float!
+  priorityMatching: Boolean!
+  unlimitedMessages: Boolean!
+}
+
+enum SubscriptionStatus {
+  ACTIVE
+  CANCELED
+  EXPIRED
+  PAST_DUE
+}
+
+enum SubscriptionTier {
+  FREE
+  PLATINUM
+  PREMIUM
+}
+
+type SubscriptionUsageType {
+  matchesRemaining: Float!
+  matchesThisWeek: Float!
+}
+
+input UpgradeSubscriptionInput {
+  tier: SubscriptionTier!
+}
