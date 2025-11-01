@@ -1,0 +1,48 @@
+plugins {
+  id("com.android.library")
+  id("kotlin-android")
+}
+
+group = "expo.modules.genau"
+version = "0.1.0"
+
+android {
+  namespace = "expo.modules.genau"
+  compileSdk = 34
+
+  defaultConfig {
+    minSdk = 24
+    targetSdk = 34
+  }
+
+  compileOptions {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+  }
+
+  kotlinOptions {
+    jvmTarget = "17"
+  }
+
+  buildTypes {
+    release {
+      isMinifyEnabled = false
+    }
+  }
+
+  lintOptions {
+    abortOnError = false
+  }
+}
+
+dependencies {
+  implementation(project(":expo-modules-core"))
+  implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.9.20")
+  implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
+  implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
+  
+  // TODO: Add Google ML Kit dependencies when implementing actual LLM integration
+  // implementation("com.google.android.gms:play-services-mlkit-text-recognition:19.0.0")
+  // Or for Gemini Nano:
+  // implementation("com.google.ai.client.generativeai:generativeai:0.1.0")
+}

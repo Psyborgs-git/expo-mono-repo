@@ -1,0 +1,61 @@
+{
+  "name": "@bdt/genau",
+  "version": "0.1.0",
+  "description": "Expo module for interacting with on-device LLMs on iOS and Android",
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf build",
+    "lint": "eslint src --ext .ts,.tsx",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "type-check": "tsc --noEmit",
+    "open:ios": "open ios/Genau.xcworkspace",
+    "open:android": "open -a \"Android Studio\" android"
+  },
+  "keywords": [
+    "react-native",
+    "expo",
+    "expo-module",
+    "llm",
+    "on-device-llm",
+    "ai",
+    "machine-learning",
+    "mlx",
+    "gemini-nano"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Psyborgs-git/expo-mono-repo.git",
+    "directory": "packages/genau"
+  },
+  "bugs": {
+    "url": "https://github.com/Psyborgs-git/expo-mono-repo/issues"
+  },
+  "author": "BDT Team",
+  "license": "MIT",
+  "homepage": "https://github.com/Psyborgs-git/expo-mono-repo/tree/main/packages/genau#readme",
+  "dependencies": {
+    "expo-modules-core": "^2.3.4"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.14",
+    "@typescript-eslint/eslint-plugin": "^6.21.0",
+    "@typescript-eslint/parser": "^6.21.0",
+    "eslint": "^8.57.1",
+    "expo": "^54.0.20",
+    "jest": "^29.7.0",
+    "jest-expo": "^54.0.13",
+    "react": "19.1.0",
+    "react-native": "^0.81.5",
+    "ts-jest": "^29.1.2",
+    "typescript": "^5.9.3"
+  },
+  "peerDependencies": {
+    "expo": "*",
+    "react": "*",
+    "react-native": "*"
+  }
+}
