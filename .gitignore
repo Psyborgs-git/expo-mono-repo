@@ -7,3 +7,4 @@ lib
 *.lock
 .vscode
 .DS_Store
+.turbo

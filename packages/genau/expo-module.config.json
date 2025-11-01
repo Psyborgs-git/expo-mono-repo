@@ -1,0 +1,9 @@
+{
+  "platforms": ["ios", "android"],
+  "ios": {
+    "modules": ["GenauModule"]
+  },
+  "android": {
+    "modules": ["expo.modules.genau.GenauModule"]
+  }
+}

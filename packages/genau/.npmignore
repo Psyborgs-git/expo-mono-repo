@@ -1,0 +1,28 @@
+# Source files
+src/
+tsconfig.json
+
+# Tests
+**/__tests__/
+**/__mocks__/
+jest.config.js
+coverage/
+
+# Build artifacts (keep only the built files)
+*.log
+*.tgz
+
+# Development
+.turbo/
+node_modules/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
